@@ -23,6 +23,7 @@ FTagList = ['MARR', 'HUSB', 'WIFE', 'CHIL','DIV']
 INDIframe = ["ID","Name","Gender","Birthday","Age","Alive","Death","Child","Spouse"]
 FAMframe = ["ID","Married","Divorced","Husband ID","Husband Name","Wife ID","Wife Name","Children"]
 
+
 def Validation(tag):
 	if tag in TagList:
 		# print True
