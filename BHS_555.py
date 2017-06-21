@@ -16,6 +16,7 @@ import datetime
 import US07
 import US08
 import US09
+<<<<<<< HEAD
 import US_16
 import US_23
 
@@ -25,25 +26,40 @@ IndRef = [] #List of all individual ID (sorted)
 FamRef = [] #List of all family ID (sorted)
 
 '''Decorators for Tables'''
+=======
+import US16
+import US23
+
+IndDic = {} #Dictionary containing Information of all Individual
+FamDic = {} #Dictionary containing Information of all Family
+IndRef = [] #List containing Individual ID (Sorted)
+FamRef = [] #List containing Family ID (Sorted)
+
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++ Table Decorators ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+>>>>>>> b587a0ef99016f0a38d96f75c5e8e97f177e96c2
 TagList = ['INDI', 'NAME', 'SEX', 'BIRT', 'DEAT', 'FAMC', 'FAMS', 'FAM', 'MARR', 'HUSB', 'WIFE', 'CHIL', 'DIV', 'DATE', 'HEAD', 'TRLR', 'NOTE']
 ITagList = ['NAME', 'SEX', 'BIRT', 'DEAT', 'FAMC', 'FAMS']
 FTagList = ['MARR', 'HUSB', 'WIFE', 'CHIL','DIV']
 
 INDIframe = ["ID","Name","Gender","Birthday","Age","Alive","Death","Child","Spouse"]
 FAMframe = ["ID","Married","Divorced","Husband ID","Husband Name","Wife ID","Wife Name","Children"]
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+<<<<<<< HEAD
 '''Dictionary for month lettered names and numbers'''
 months = {"JAN": "01","FEB":"02" ,"MAR": "03","APR": "04","MAY": "05","JUN": "06","JUL": "07","AUG":"08","SEP": "09","OCT": "10","NOV": "11","DEC": "12" }
 
 '''Validates whether the tag is acceptable or not'''
 def Validation(tag):
+=======
+def Validation(tag): #Validates the Tag
+>>>>>>> b587a0ef99016f0a38d96f75c5e8e97f177e96c2
 	if tag in TagList:
-		# print True
 		return True
 	else:
-		# print False
 		return False
 
+<<<<<<< HEAD
 '''Returns the age in years - Wil'''
 
 #Will eventually use something like below, but not for this sprint'''
@@ -59,6 +75,10 @@ def Age(BIRT, DEAT):
 ''' One way to calculate age - Barath'''
 
 def Age(BIRT, DEAT):
+=======
+def Age(BIRT, DEAT): #Return the Age in Years
+	months = {"JAN": "01","FEB":"02" ,"MAR": "03","APR": "04","MAY": "05","JUN": "06","JUL": "07","AUG":"08","SEP": "09","OCT": "10","NOV": "11","DEC": "12" }
+>>>>>>> b587a0ef99016f0a38d96f75c5e8e97f177e96c2
 	today = datetime.date.today()
 	tod = str(today).split("-")
 	bir = BIRT.split(" ")[::-1]
@@ -77,6 +97,7 @@ def Age(BIRT, DEAT):
 
 	return str(age)
 
+<<<<<<< HEAD
 '''Another way to calculate age with life and death separate - Sawyer'''
 def AgeLive(DoB):
     ''' JRR: Your logic is correct, but you can simplify it to
@@ -123,14 +144,18 @@ def AgeDeath(DoB, DoD):
     
     return age
 
+=======
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ Data Processing For Table +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+#												Updates the FamDic and IndDic processing the data from GEDCOM file											
+#														*** Please DO NOT Disturb this Section ***
+>>>>>>> b587a0ef99016f0a38d96f75c5e8e97f177e96c2
 
 lin = 0
 with open(r'Project01.ged', 'r') as f:
 
 	d = {}
 	for line in f:
-		# lin += 1
-		# print lin
 		info = line.split()
 		level = info[0]
 		tag = info[1]
@@ -151,7 +176,7 @@ with open(r'Project01.ged', 'r') as f:
 					FID = FID[0]+"0"+FID[1:]
 				FamRef.append(FID)
 				FamDic[FID]={}
-			# print "\n\n\n\n"
+		
 		if Validation(tag) == True:
 			if tag == 'HEAD':
 				pass
@@ -205,11 +230,11 @@ with open(r'Project01.ged', 'r') as f:
 				 IndDic[IID][tag] = " ".join(info[2:])
 			elif tag in FTagList:
 				 FamDic[FID][tag] = " ".join(info[2:])
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+#																	USER STORIES 
 
 #=================================================================================================================================================================================================================================================================================================
-
-
 
 """ 
 Functions to call User Stories created by Bharath
@@ -254,17 +279,31 @@ def US_01():
 def US_07():
 	pass #Sawyer fill in your function for US07
 #=========================================================================================================================================
-
 """ 
 Functions to call User Stories created by Houston
 		US23 - Unique name and birth date
 		US16 - Male last name
 """
+<<<<<<< HEAD
 """
 imported user stories at the top of this program"""
+=======
+def US_23():
+	for i in FamRef:
+		HUSB = IndDic[FamDic[i]["HUSB"]]["NAME"]
+		CHIL = FamDic[i].get("CHIL","N/A")
+		US23.US_23(HUSB,CHIL)
 
+def US_16():
+	US16.US_16(IndDic)
 #=================================================================================================================================================================================================================================================================================================
+
+#																				MAIN SECTION
+>>>>>>> b587a0ef99016f0a38d96f75c5e8e97f177e96c2
+
 if __name__ == '__main__':
+
+	#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  TABLE CREATION  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	ID,Name,Gender,Birthday,Age,Alive,Death,Child,Spouse = 3,0,0,0,0,0,0,0,0
 	for i in IndDic.values():
 		Name     = max(Name, len(i["NAME"])) 
@@ -296,6 +335,8 @@ if __name__ == '__main__':
 	print "+"+"-"*5+"+"+"-"*13+"+"+"-"*10+"+"+"-"*12+"+"+"-"*19+"+"+"-"*9+"+"+"-"*19+"+"+"-"*24+"+"
 
 	print "\n\n\n"
+	#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	
 	#================ << SPRINT 1 >> ================
 	US_08() #BK
 	US_09() #BK
