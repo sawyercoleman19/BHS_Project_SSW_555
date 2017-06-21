@@ -1,5 +1,3 @@
-import BHS_555 as db
-
 def US_16(IndDic):
 	Indref = IndDic.keys()
 	IndName = []
@@ -7,10 +5,14 @@ def US_16(IndDic):
 	for a in Indref:
 		IndName.append(IndDic[a]["NAME"])
 		Birth.append(IndDic[a]["BIRT"])
-	#print IndName
+
+	namelist = {}
+	for i in Indref:
+		namelist[i] = IndDic[i]["NAME"]
 
 	if len(IndName) != len(set(IndName)):
 		for p in range(len(IndName)):
-			for q in IndName[0:p]+IndName[p:]:
-				if IndName[p] == q and Birth[IndName.index(p)] == Birth[IndName.index(q)]:
-					print "Error: There are 2 " + p + "Having Same Date of Birth "+Birth[IndName.index(p)] 
+			ql = IndName[0:p]+IndName[p+1:]
+			for q in ql :
+				if IndName[p] == q and Birth[p] == Birth[ql.index(q)]:
+					print "Error: INDIVIDUAL: US16: " + namelist.keys()[namelist.values().index(IndName[p])] + ": The Individual "+namelist.keys()[namelist.values().index(IndName[p])]+" is sharing the Same Name \""+IndName[p]+"\" and Date of Birth \""+Birth[p] +"\" with another individual"
