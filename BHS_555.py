@@ -10,6 +10,8 @@ Team Members:
 '''
 
 import datetime
+import US08
+import US09
 
 IndDic = {}
 FamDic = {}
@@ -50,6 +52,7 @@ def Age(BIRT, DEAT):
 		age -= 1
 
 	return str(age)
+
 
 lin = 0
 with open(r'Project01.ged', 'r') as f:
@@ -132,34 +135,105 @@ with open(r'Project01.ged', 'r') as f:
 				 IndDic[IID][tag] = " ".join(info[2:])
 			elif tag in FTagList:
 				 FamDic[FID][tag] = " ".join(info[2:])
-	
-
-ID,Name,Gender,Birthday,Age,Alive,Death,Child,Spouse = 3,0,0,0,0,0,0,0,0
-for i in IndDic.values():
-	Name     = max(Name, len(i["NAME"])) 
-	Gender   = max(Gender, len(i["SEX"])) 
-	Birthday = max(Birthday, len(i["BIRT"])) 
-	Age      = max(Age, len(i["AGE"])) 
-	Alive    = max(Alive, len(i["Alive"]))  
-	Death    = max(Death, len(i.get("DEAT",""))) 
-	Child    = max(Child, len(i.get("Child",""))*7)
-	Spouse   = max(Spouse, len(i.get("Spouse",""))*7)  
 
 
-print "INDIVIDUAL DATABASE: \n"
-print "+"+"-"*(ID+2)+"+"+"-"*(Name+2)+"+"+"-"*(Gender+7)+"+"+"-"*(Birthday+2)+"+"+"-"*(Age+3)+"+"+"-"*(Alive+2)+"+"+"-"*(Death+2)+"+"+"-"*(Child-4)+"+"+"-"*(Spouse+5)+"+"
-print "| {:<3} | {:<17} | {:<6} | {:<11} | {:<3} | {:<5} | {:<11} | {:<8} | {:<17} |".format("ID","Name","Gender","Birthday","Age","Alive","Death","Child","Spouse")
-print "+"+"-"*(ID+2)+"+"+"-"*(Name+2)+"+"+"-"*(Gender+7)+"+"+"-"*(Birthday+2)+"+"+"-"*(Age+3)+"+"+"-"*(Alive+2)+"+"+"-"*(Death+2)+"+"+"-"*(Child-4)+"+"+"-"*(Spouse+5)+"+"
-for x in IndRef:
-    print "| {:<3} | {:<17} | {:<6} | {:<11} | {:<3} | {:<5} | {:<11} | {:<8} | {:<17} |".format(x,IndDic[x]["NAME"],IndDic[x]["SEX"],IndDic[x]["BIRT"],IndDic[x]["AGE"],IndDic[x]["Alive"],IndDic[x].get("DEAT","N/A"),IndDic[x].get("Child","None"),IndDic[x].get("Spouse","N/A"))
-print "+"+"-"*(ID+2)+"+"+"-"*(Name+2)+"+"+"-"*(Gender+7)+"+"+"-"*(Birthday+2)+"+"+"-"*(Age+3)+"+"+"-"*(Alive+2)+"+"+"-"*(Death+2)+"+"+"-"*(Child-4)+"+"+"-"*(Spouse+5)+"+"
+#=================================================================================================================================================================================================================================================================================================
 
-print "\n\n\n"
-print "FAMILY DATABASE: \n"
-ID,Married,Divorced,HusbandID,HusbandName,WifeID,WifeName,Children = 3,0,0,0,0,0,0,0
-print "+"+"-"*5+"+"+"-"*13+"+"+"-"*10+"+"+"-"*12+"+"+"-"*19+"+"+"-"*9+"+"+"-"*19+"+"+"-"*24+"+"
-print "| {:<3} | {:<11} | {:<8} | {:<10} | {:<17} | {:<7} | {:<17} | {:<22} |".format("ID","Married","Divorced","Husband ID","Husband Name","Wife ID","Wife Name","Children")
-print "+"+"-"*5+"+"+"-"*13+"+"+"-"*10+"+"+"-"*12+"+"+"-"*19+"+"+"-"*9+"+"+"-"*19+"+"+"-"*24+"+"
-for x in FamRef:
-    print "| {:<3} | {:<11} | {:<8} | {:<10} | {:<17} | {:<7} | {:<17} | {:<22} |".format(x,FamDic[x]["MARR"],(FamDic[x]).get("DIV","N/A"),FamDic[x]["HUSB"],IndDic[FamDic[x]["HUSB"]]["NAME"],FamDic[x]["WIFE"],IndDic[FamDic[x]["WIFE"]]["NAME"],(FamDic[x]).get("CHIL","N/A"))
-print "+"+"-"*5+"+"+"-"*13+"+"+"-"*10+"+"+"-"*12+"+"+"-"*19+"+"+"-"*9+"+"+"-"*19+"+"+"-"*24+"+"
+
+
+""" 
+Functions to call User Stories created by Bharath
+		US08 - Birth before Marriage of Parents
+		US09 - Birth before Death of Parents
+"""
+def US_08():
+	for x in FamRef:
+		CHIL = FamDic[x].get("CHIL",[])
+		MARR = FamDic[x]["MARR"]
+		DIV = (FamDic[x]).get("DIV","N/A")
+		for i in CHIL:
+			out = US08.US08(MARR,IndDic[i]["BIRT"],DIV)
+			if out == "FalseBefore":
+				print "ANOMALY: FAMILY: US08: "+x+": Child "+i+" born "+IndDic[i]["BIRT"]+" before marriage on "+ MARR
+			elif out == "FalseAfter":
+				print "ANOMALY: FAMILY: US08: "+x+": Child "+i+" born "+IndDic[i]["BIRT"]+" after divorce on "+ DIV
+			
+def US_09():
+	for x in FamRef:
+		MOM_Death = (IndDic[FamDic[x]["WIFE"]]).get("DEAT","N/A")
+		DAD_Death = (IndDic[FamDic[x]["HUSB"]]).get("DEAT","N/A")
+		CHIL = FamDic[x].get("CHIL",[])
+		for i in CHIL:
+			out = US09.US09(MOM_Death,DAD_Death,IndDic[i]["BIRT"])
+			if out == "FalseDad":
+				print "ANOMALY: FAMILY: US09: "+x+": Child "+i+" born "+IndDic[i]["BIRT"]+" after father's death (after 9 months) on "+ DAD_Death
+			elif out == "FalseMom":
+				print "ANOMALY: FAMILY: US09: "+x+": Child "+i+" born "+IndDic[i]["BIRT"]+" after mother's death on "+ MOM_Death		
+
+
+#=========================================================================================================================================
+
+""" 
+Functions to call User Stories created by Sawyer
+		US01 - Dates before current date
+		US07 - Less than 150 years old
+"""
+def US_01():
+	pass #Sawyer fill in your function for US01
+
+def US_07():
+	pass #Sawyer fill in your function for US07
+#=========================================================================================================================================
+
+""" 
+Functions to call User Stories created by Houston
+		US23 - Unique name and birth date
+		US16 - Male last name
+"""
+def US_23():
+	pass #Houston fill in your function for US23
+
+def US_16():
+	pass #Houston fill in your function for US16
+
+
+#=================================================================================================================================================================================================================================================================================================
+if __name__ == '__main__':
+	ID,Name,Gender,Birthday,Age,Alive,Death,Child,Spouse = 3,0,0,0,0,0,0,0,0
+	for i in IndDic.values():
+		Name     = max(Name, len(i["NAME"])) 
+		Gender   = max(Gender, len(i["SEX"])) 
+		Birthday = max(Birthday, len(i["BIRT"])) 
+		Age      = max(Age, len(i["AGE"])) 
+		Alive    = max(Alive, len(i["Alive"]))  
+		Death    = max(Death, len(i.get("DEAT",""))) 
+		Child    = max(Child, len(i.get("Child",""))*7)
+		Spouse   = max(Spouse, len(i.get("Spouse",""))*7)  
+
+
+	print "INDIVIDUAL DATABASE: \n"
+	print "+"+"-"*(ID+2)+"+"+"-"*(Name+2)+"+"+"-"*(Gender+7)+"+"+"-"*(Birthday+2)+"+"+"-"*(Age+3)+"+"+"-"*(Alive+2)+"+"+"-"*(Death+2)+"+"+"-"*(Child-4)+"+"+"-"*(Spouse+5)+"+"
+	print "| {:<3} | {:<17} | {:<6} | {:<11} | {:<3} | {:<5} | {:<11} | {:<8} | {:<17} |".format("ID","Name","Gender","Birthday","Age","Alive","Death","Child","Spouse")
+	print "+"+"-"*(ID+2)+"+"+"-"*(Name+2)+"+"+"-"*(Gender+7)+"+"+"-"*(Birthday+2)+"+"+"-"*(Age+3)+"+"+"-"*(Alive+2)+"+"+"-"*(Death+2)+"+"+"-"*(Child-4)+"+"+"-"*(Spouse+5)+"+"
+	for x in IndRef:
+	    print "| {:<3} | {:<17} | {:<6} | {:<11} | {:<3} | {:<5} | {:<11} | {:<8} | {:<17} |".format(x,IndDic[x]["NAME"],IndDic[x]["SEX"],IndDic[x]["BIRT"],IndDic[x]["AGE"],IndDic[x]["Alive"],IndDic[x].get("DEAT","N/A"),IndDic[x].get("Child","None"),IndDic[x].get("Spouse","N/A"))
+	print "+"+"-"*(ID+2)+"+"+"-"*(Name+2)+"+"+"-"*(Gender+7)+"+"+"-"*(Birthday+2)+"+"+"-"*(Age+3)+"+"+"-"*(Alive+2)+"+"+"-"*(Death+2)+"+"+"-"*(Child-4)+"+"+"-"*(Spouse+5)+"+"
+
+	print "\n\n\n"
+	print "FAMILY DATABASE: \n"
+	ID,Married,Divorced,HusbandID,HusbandName,WifeID,WifeName,Children = 3,0,0,0,0,0,0,0
+	print "+"+"-"*5+"+"+"-"*13+"+"+"-"*10+"+"+"-"*12+"+"+"-"*19+"+"+"-"*9+"+"+"-"*19+"+"+"-"*24+"+"
+	print "| {:<3} | {:<11} | {:<8} | {:<10} | {:<17} | {:<7} | {:<17} | {:<22} |".format("ID","Married","Divorced","Husband ID","Husband Name","Wife ID","Wife Name","Children")
+	print "+"+"-"*5+"+"+"-"*13+"+"+"-"*10+"+"+"-"*12+"+"+"-"*19+"+"+"-"*9+"+"+"-"*19+"+"+"-"*24+"+"
+	for x in FamRef:
+	    print "| {:<3} | {:<11} | {:<8} | {:<10} | {:<17} | {:<7} | {:<17} | {:<22} |".format(x,FamDic[x]["MARR"],(FamDic[x]).get("DIV","N/A"),FamDic[x]["HUSB"],IndDic[FamDic[x]["HUSB"]]["NAME"],FamDic[x]["WIFE"],IndDic[FamDic[x]["WIFE"]]["NAME"],(FamDic[x]).get("CHIL","N/A"))
+	print "+"+"-"*5+"+"+"-"*13+"+"+"-"*10+"+"+"-"*12+"+"+"-"*19+"+"+"-"*9+"+"+"-"*19+"+"+"-"*24+"+"
+
+	print "\n\n\n"
+	#================ << SPRINT 1 >> ================
+	US_08() #BK
+	US_09() #BK
+	US_01() #SC
+	US_07() #SC
+	US_23() #HM
+	US_16() #HM
