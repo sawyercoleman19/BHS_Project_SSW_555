@@ -11,19 +11,23 @@ def US_23(HUSB, CHIL):
 		fatherLast = HUSB.split("/")[1]
 	elif male_Child != "N/A" and len(male_Child)>0:
 		fatherLast = male_Child[0].split("/")[1]
+	namelist = {}
+	famlist = {}
+	for i in db.IndRef:
+		namelist[i] = db.IndDic[i]["NAME"]
+	for j in db.FamRef:
+		famlist[j] = db.IndDic[db.FamDic[j]["HUSB"]]["NAME"].split("/")[1]
 
 	if male_Child != "N/A" and len(male_Child)>0:
 		
 		for x in male_Child:
 			chilLast = x.split("/")[1]
-			#print chilLast, fatherLast
 			if fatherLast != chilLast:
-				print "Error " + HUSB + "is not father of "+ x
+				print "Error: FAMILY: US23: " + famlist.keys()[famlist.values().index(fatherLast)] +": The Child "+ namelist.keys()[namelist.values().index(x)]+ " ( "+x + " ) is not not having the family name \""+ fatherLast+"\""
 
 def maleChild(CHIL):
 	male_Child = []
 	for j in CHIL:
 		if db.IndDic[j]["SEX"] == "M":
-			#print db.IndDic[j]["NAME"]
 			male_Child.append(db.IndDic[j]["NAME"])
 	return male_Child
