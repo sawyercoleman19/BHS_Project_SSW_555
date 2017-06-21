@@ -12,6 +12,8 @@ Team Members:
 import datetime
 import US08
 import US09
+import US_16
+import US_23
 
 IndDic = {}
 FamDic = {}
@@ -190,12 +192,8 @@ Functions to call User Stories created by Houston
 		US23 - Unique name and birth date
 		US16 - Male last name
 """
-def US_23():
-	pass #Houston fill in your function for US23
-
-def US_16():
-	pass #Houston fill in your function for US16
-
+"""
+imported user stories at the top of this program"""
 
 #=================================================================================================================================================================================================================================================================================================
 if __name__ == '__main__':
