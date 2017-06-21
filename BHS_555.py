@@ -12,30 +12,30 @@ Team Members:
 import datetime
 import US08
 import US09
-import US_16
-import US_23
+import US16
+import US23
 
-IndDic = {}
-FamDic = {}
-IndRef = []
-FamRef = []
+IndDic = {} #Dictionary containing Information of all Individual
+FamDic = {} #Dictionary containing Information of all Family
+IndRef = [] #List containing Individual ID (Sorted)
+FamRef = [] #List containing Family ID (Sorted)
 
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++ Table Decorators ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 TagList = ['INDI', 'NAME', 'SEX', 'BIRT', 'DEAT', 'FAMC', 'FAMS', 'FAM', 'MARR', 'HUSB', 'WIFE', 'CHIL', 'DIV', 'DATE', 'HEAD', 'TRLR', 'NOTE']
 ITagList = ['NAME', 'SEX', 'BIRT', 'DEAT', 'FAMC', 'FAMS']
 FTagList = ['MARR', 'HUSB', 'WIFE', 'CHIL','DIV']
 
 INDIframe = ["ID","Name","Gender","Birthday","Age","Alive","Death","Child","Spouse"]
 FAMframe = ["ID","Married","Divorced","Husband ID","Husband Name","Wife ID","Wife Name","Children"]
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-def Validation(tag):
+def Validation(tag): #Validates the Tag
 	if tag in TagList:
-		# print True
 		return True
 	else:
-		# print False
 		return False
 
-def Age(BIRT, DEAT):
+def Age(BIRT, DEAT): #Return the Age in Years
 	months = {"JAN": "01","FEB":"02" ,"MAR": "03","APR": "04","MAY": "05","JUN": "06","JUL": "07","AUG":"08","SEP": "09","OCT": "10","NOV": "11","DEC": "12" }
 	today = datetime.date.today()
 	tod = str(today).split("-")
@@ -55,14 +55,16 @@ def Age(BIRT, DEAT):
 
 	return str(age)
 
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ Data Processing For Table +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+#												Updates the FamDic and IndDic processing the data from GEDCOM file											
+#														*** Please DO NOT Disturb this Section ***
 
 lin = 0
 with open(r'Project01.ged', 'r') as f:
 
 	d = {}
 	for line in f:
-		# lin += 1
-		# print lin
 		info = line.split()
 		level = info[0]
 		tag = info[1]
@@ -83,7 +85,7 @@ with open(r'Project01.ged', 'r') as f:
 					FID = FID[0]+"0"+FID[1:]
 				FamRef.append(FID)
 				FamDic[FID]={}
-			# print "\n\n\n\n"
+		
 		if Validation(tag) == True:
 			if tag == 'HEAD':
 				pass
@@ -137,11 +139,11 @@ with open(r'Project01.ged', 'r') as f:
 				 IndDic[IID][tag] = " ".join(info[2:])
 			elif tag in FTagList:
 				 FamDic[FID][tag] = " ".join(info[2:])
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+#																	USER STORIES 
 
 #=================================================================================================================================================================================================================================================================================================
-
-
 
 """ 
 Functions to call User Stories created by Bharath
@@ -186,17 +188,26 @@ def US_01():
 def US_07():
 	pass #Sawyer fill in your function for US07
 #=========================================================================================================================================
-
 """ 
 Functions to call User Stories created by Houston
 		US23 - Unique name and birth date
 		US16 - Male last name
 """
-"""
-imported user stories at the top of this program"""
+def US_23():
+	for i in FamRef:
+		HUSB = IndDic[FamDic[i]["HUSB"]]["NAME"]
+		CHIL = FamDic[i].get("CHIL","N/A")
+		US23.US_23(HUSB,CHIL)
 
+def US_16():
+	US16.US_16(IndDic)
 #=================================================================================================================================================================================================================================================================================================
+
+#																				MAIN SECTION
+
 if __name__ == '__main__':
+
+	#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  TABLE CREATION  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	ID,Name,Gender,Birthday,Age,Alive,Death,Child,Spouse = 3,0,0,0,0,0,0,0,0
 	for i in IndDic.values():
 		Name     = max(Name, len(i["NAME"])) 
@@ -228,6 +239,8 @@ if __name__ == '__main__':
 	print "+"+"-"*5+"+"+"-"*13+"+"+"-"*10+"+"+"-"*12+"+"+"-"*19+"+"+"-"*9+"+"+"-"*19+"+"+"-"*24+"+"
 
 	print "\n\n\n"
+	#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	
 	#================ << SPRINT 1 >> ================
 	US_08() #BK
 	US_09() #BK
