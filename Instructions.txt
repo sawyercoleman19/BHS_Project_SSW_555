@@ -1,0 +1,68 @@
+GEDCOM PROJECT
+==============
+
+BHS_555
+
+SSW 555 - Agile Methods for Software Development
+
+Team Members:
+	Bharath Kumar
+	Sawyer Coleman
+	Houston Migdon
+
+
+File Structure
+==============
+<BHS_Project_SSW_555>
+Project01.ged 		-> GEDCOM file
+BHS_555.py			-> Main file to execute
+US##.py			-> User Stories functions
+Instructions.txt		-> Instructions for the developers
+README.txt 		-> General Instructions
+
+Variables:
+==========
+BHS_555:
+
+IndDict => Dictionary containing details about individuals
+FamDict => Dictionary containing details about Family
+IndRef => List of all individual ID (Sorted)
+FamDict => List of all family ID (Sorted)
+
+TagList, ITagList, FtagList, INDIframe, FAMframe => Decorators for table
+
+IndDict:
+	NAME  - Name
+	SEX   - Gender
+	BIRTH - Birth Date
+	DEAT  - Death Date (If applicable)
+	FAMC  - Child of Family ID
+	FAMS  - Spouse of Family ID
+
+FamDict:
+	MARR - Marriage Date 
+ 	HUSB - Husband ID
+	WIFE - Wife ID
+	CHIL - List of Children ID
+	DIV  - Divorce Date (If applicable)
+
+Functions:
+==========
+BHS_555:
+Validation() => Validates whether the tag is acceptable or not
+Age()=> Retuen the age in years
+
+US_##() => Handle for various User Story functions
+
+US08:
+leapyear() => Checks whether the given year is leapyear or not
+DetAge() => returns the list of age in [years, months, days]
+US08()=> Checks if the Child is born before the marriage of parents
+
+US08:
+leapyear() => Checks whether the given year is leapyear or not
+DetAge() => returns the list of age in [years, months, days]
+US08()=> Checks if the Child is born before the marriage of parents
+
+US09:
+US09()=> Checks if the Child is born after the death of the parents
