@@ -7,17 +7,22 @@ Team Members:
 	Bharath Kumar
 	Sawyer Coleman
 	Houston Migdon
+    
+UPDATE LOG:
+6/20 - Sawyer
 '''
 
 import datetime
+import US07
 import US08
 import US09
 
-IndDic = {}
-FamDic = {}
-IndRef = []
-FamRef = []
+IndDic = {} #Dictionary containing details about individuals
+FamDic = {} #Dictionary containing details about Family
+IndRef = [] #List of all individual ID (sorted)
+FamRef = [] #List of all family ID (sorted)
 
+'''Decorators for Tables'''
 TagList = ['INDI', 'NAME', 'SEX', 'BIRT', 'DEAT', 'FAMC', 'FAMS', 'FAM', 'MARR', 'HUSB', 'WIFE', 'CHIL', 'DIV', 'DATE', 'HEAD', 'TRLR', 'NOTE']
 ITagList = ['NAME', 'SEX', 'BIRT', 'DEAT', 'FAMC', 'FAMS']
 FTagList = ['MARR', 'HUSB', 'WIFE', 'CHIL','DIV']
@@ -25,7 +30,10 @@ FTagList = ['MARR', 'HUSB', 'WIFE', 'CHIL','DIV']
 INDIframe = ["ID","Name","Gender","Birthday","Age","Alive","Death","Child","Spouse"]
 FAMframe = ["ID","Married","Divorced","Husband ID","Husband Name","Wife ID","Wife Name","Children"]
 
+'''Dictionary for month lettered names and numbers'''
+months = {"JAN": "01","FEB":"02" ,"MAR": "03","APR": "04","MAY": "05","JUN": "06","JUL": "07","AUG":"08","SEP": "09","OCT": "10","NOV": "11","DEC": "12" }
 
+'''Validates whether the tag is acceptable or not'''
 def Validation(tag):
 	if tag in TagList:
 		# print True
@@ -34,8 +42,21 @@ def Validation(tag):
 		# print False
 		return False
 
+'''Returns the age in years - Wil'''
+
+#Will eventually use something like below, but not for this sprint'''
+''' Added: Sawyer 6/20
 def Age(BIRT, DEAT):
-	months = {"JAN": "01","FEB":"02" ,"MAR": "03","APR": "04","MAY": "05","JUN": "06","JUL": "07","AUG":"08","SEP": "09","OCT": "10","NOV": "11","DEC": "12" }
+    birth_date = datetime.strptime(BIRT, '%d %b %Y')
+    death_date = datetime.strptime(DEAT, '%d %b %Y')
+    age = ((datetime.today() - birth_date) - death_date).days/365
+    #ageDeath = (death_date - birth_date).days/365
+    return age
+'''
+
+''' One way to calculate age - Barath'''
+
+def Age(BIRT, DEAT):
 	today = datetime.date.today()
 	tod = str(today).split("-")
 	bir = BIRT.split(" ")[::-1]
@@ -53,6 +74,52 @@ def Age(BIRT, DEAT):
 		age -= 1
 
 	return str(age)
+
+'''Another way to calculate age with life and death separate - Sawyer'''
+def AgeLive(DoB):
+    ''' JRR: Your logic is correct, but you can simplify it to
+        birth_date = datetime.strptime(DoB, '%d %b %Y')
+        age = (datetime.today() - birth_date).days/365
+        return age
+        '''
+    birth = DoB.split(" ")[::-1]
+    birth[1] = months[birth[1]]
+    bDay = str(birth[0])
+    bYear = str(birth[2])
+    mn = str(birth[1])
+    birth_date_orig = bDay+"/"+mn+"/"+bYear
+    birth_date = datetime.strptime(birth_date_orig, '%Y/%m/%d')
+    age = (datetime.today() - birth_date).days/365
+    
+    return age
+
+#Calculates age from date of birth to date of death
+def AgeDeath(DoB, DoD):
+    ''' JRR: Your logic is correct, but you can simplify it to
+        birth_date = datetime.strptime(DoB, '%d %b %Y')
+        death_date = datetime.strptime(DoD, '%d %b %Y')
+        age = (death_date - birth_date).days/365
+        return age
+        '''
+    birth = DoB.split(" ")[::-1]  # why reverse the string?
+    birth[1] = months[birth[1]]
+    mn = str(birth[1])
+    bDay = str(birth[0])
+    bYear = str(birth[2])
+    birth_date_orig = bDay+"/"+mn+"/"+bYear
+    birth_date = datetime.strptime(birth_date_orig, '%Y/%m/%d')
+    
+    death = DoD.split(" ")[::-1]
+    death[1] = months[death[1]]
+    mn = str(death[1])
+    dDay = str(death[0])
+    dYear = str(death[2])
+    death_date_orig = dDay+"/"+mn+"/"+dYear
+    death_date = datetime.strptime(death_date_orig, '%Y/%m/%d')
+    
+    age = (death_date - birth_date).days/365
+    
+    return age
 
 
 lin = 0

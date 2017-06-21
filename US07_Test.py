@@ -5,7 +5,6 @@ SSW_555_Agile_Methods
 BHS_Project_SSW_555
 Homework04
 '''
-
 import US07
 
 def test1_US07():
@@ -57,5 +56,4 @@ def test11_US07():
     case11 = US07.US07("06 FEB 1867", "06 FEB 2017")
     print(case11)
     assert case11 == False
-
 

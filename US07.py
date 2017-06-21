@@ -14,8 +14,9 @@ import calendar
 months = {"JAN": 1,"FEB": 2 ,"MAR": 3,"APR": 4,"MAY": 5,"JUN": 6,"JUL": 7,"AUG":8,"SEP": 9,"OCT": 10,"NOV": 11,"DEC": 12 }
 
 #Calculates the age from date of birth to current date, assuming there is no date of death
+
 def AgeLive(DoB):
-    ''' JRR: Your logic is correct, but you can simplify it to
+    '''JRR: Your logic is correct, but you can simplify it to
         birth_date = datetime.strptime(DoB, '%d %b %Y') 
         age = (datetime.today() - birth_date).days/365
         return age
@@ -32,8 +33,10 @@ def AgeLive(DoB):
     return age
 
 #Calculates age from date of birth to date of death
+
 def AgeDeath(DoB, DoD):
-    ''' JRR: Your logic is correct, but you can simplify it to
+
+    '''JRR: Your logic is correct, but you can simplify it to
         birth_date = datetime.strptime(DoB, '%d %b %Y') 
         death_date = datetime.strptime(DoD, '%d %b %Y')
         age = (death_date - birth_date).days/365
@@ -71,6 +74,8 @@ def US07(BirthDate, DeathDate = "N/A"):
     ''' JRR: I like how you used optional parameters for the DeathDate.   Just beware that BirthDate may be unknown as well.
         GEDCOM allows you specify both but doesn't require it.
     '''
+    # AgeLive = BHS_555.AgeLive(DoB)
+    # AgeDeath = BHS_555.AgeDeath(DoB, DoD)
     if (DeathDate == "N/A"):
         if (AgeLive(BirthDate) < 150):
             print("The person is alive and is "+ str(AgeLive(BirthDate))+"year(s) old.")
