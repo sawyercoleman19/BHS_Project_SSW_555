@@ -19,7 +19,10 @@ BHS_555.py			-> Main file to execute
 US##.py			-> User Stories functions
 Instructions.txt		-> Instructions for the developers
 README.txt 		-> General Instructions
-
+	
+	<UnitTest>			-> Contains Test file for various 					   User Stories
+	<Additional Files>    -> Other Supporting Files
+		Project02.py 	-> Sample file to read GEDCOM
 
 
 Platform
