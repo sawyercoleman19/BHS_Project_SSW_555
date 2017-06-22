@@ -62,14 +62,6 @@ def AgeDeath(DoB, DoD):
     
     return age
 
-#This code below will eventually display age in months if under a year old but is unfinished and unnecessary for this sprint
-''' JRR: displaying age in months is a nice feature but not needed '''
-'''ageMonths = datetime.today() - birth_date
-    if (ageMonths == 0):
-    age = (datetime.today() - birth_date).months/12
-    else:
-    None'''
-
 def US07(BirthDate, DeathDate = "N/A"):
     ''' JRR: I like how you used optional parameters for the DeathDate.   Just beware that BirthDate may be unknown as well.
         GEDCOM allows you specify both but doesn't require it.
@@ -78,18 +70,12 @@ def US07(BirthDate, DeathDate = "N/A"):
     # AgeDeath = BHS_555.AgeDeath(DoB, DoD)
     if (DeathDate == "N/A"):
         if (AgeLive(BirthDate) < 150):
-            print("The person is alive and is "+ str(AgeLive(BirthDate))+"year(s) old.")
-            print("The person is less than 150 years old...")
             return True
         elif (AgeLive(BirthDate) >= 150):
-            print("This person is too old!")
-            print("The person is less than 150 years old...")
+            print("ERROR: INDIVIDUAL: US07: Individual "+ +" is older than 150 years old")
             return False
     elif (AgeDeath(BirthDate, DeathDate) < 150):
-        print("The person died at "+ str(AgeDeath(BirthDate, DeathDate))+" year(s) old.")
-        print("The person was less than 150 years old...")
         return True
     elif (AgeDeath(BirthDate, DeathDate) >= 150):
-        print("The person died at "+ str(AgeDeath(BirthDate, DeathDate))+" year(s) old. That's so old!")
-        print("The person was less than 150 years old...")
+        print("ERROR: INDIVIDUAL: US07: Individual "+ +" was older than 150 years old")
         return False

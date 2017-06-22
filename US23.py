@@ -23,7 +23,7 @@ def US_23(HUSB, CHIL):
 		for x in male_Child:
 			chilLast = x.split("/")[1]
 			if fatherLast != chilLast:
-				print "Error: FAMILY: US23: " + famlist.keys()[famlist.values().index(fatherLast)] +": The Child "+ namelist.keys()[namelist.values().index(x)]+ " ( "+x + " ) is not not having the family name \""+ fatherLast+"\""
+				print "Error: FAMILY: US23: " + famlist.keys()[famlist.values().index(fatherLast)] +": The Child "+ namelist.keys()[namelist.values().index(x)]+ " ( "+x + " ) is not having the family name \""+ fatherLast+"\""
 
 def maleChild(CHIL):
 	male_Child = []

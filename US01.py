@@ -28,24 +28,28 @@ def US01(BIRT=NA, DEAT=NA, MARR=NA, DIV=NA):
         if (birth_dt > CrntDate):
             print ("ERROR: INDIVIDUAL: US01: The date of birth, "+ BIRT +", occurs in the future")
             okay = False
+            return "False Birth"
         else:
             okay = True
     if (death_dt != None):
         if (death_dt > CrntDate):
             print ("ERROR: INDIVIDUAL: US01: The date of death, " + DEAT +", occurs in the future")
             okay = False
+            return "False Death"
         else:
             okay = True
     if (marr_dt != None):
         if (marr_dt > CrntDate):
             print ("ERROR: FAMILY: US01: The marriage date, " + MARR +", occurs in the future")
             okay = False
+            return "False Marr"
         else:
             okay = True
     if (div_dt != None):
         if (div_dt > CrntDate):
             print ("ERROR: FAMILY: US01: The divorce date, " + DIV +", occurs in the future")
             okay = False
+            return "False Div"
         else:
             okay = True
     # other date checks go here...
