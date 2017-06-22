@@ -258,35 +258,32 @@ def US_01():
         birth_date = IndDic[x].get("BIRT", "N/A")
         death_date = IndDic[x].get("DEAT", "N/A")
         person = IndDic[x].get("NAME",[])
-        for i in person:
-            out = US01.US01(birth_date, death_date)
-            if out == "False Birth":
-                print ("ERROR: INDIVIDUAL: US01: "+x+": The date of birth, " + birth_date +", occurs in the future")
-            if out == "False Death":
-                print ("ERROR: INDIVIDUAL: US01: "+x+": The date of death, " + death_date +", occurs in the future")
+        out = US01.US01_ind(birth_date, death_date)
+        if out == "False Birth":
+            print ("ERROR: INDIVIDUAL: US01: "+x+": The date of birth, " + birth_date +", occurs in the future")
+        if out == "False Death":
+            print ("ERROR: INDIVIDUAL: US01: "+x+": The date of death, " + death_date +", occurs in the future")
     for y in FamRef:
         marr_date = FamDic[y].get("MARR", "N/A")
         div_date = FamDic[y].get("DIV", "N/A")
         fam = FamDic[y].get("ID",[])
-        for f in fam:
-            out = US01.US01(marr_date, div_date)
-            if out == "False Marr":
-                print ("ERROR: FAMILY: US01: "+y+": The date of marriage, " + marr_date +", occurs in the future")
-            if out == "False Div":
-                print ("ERROR: FAMILY: US01: "+y+" The date of divorce, " + div_date +", occurs in the future")
-            else:
-                None
+        out = US01.US01_fam(marr_date, div_date)
+        if out == "False Marr":
+            print ("ERROR: FAMILY: US01: "+y+": The date of marriage, " + marr_date +", occurs in the future")
+        if out == "False Div":
+            print ("ERROR: FAMILY: US01: "+y+" The date of divorce, " + div_date +", occurs in the future")
+        else:
+            None
 def US_07():
     for x in IndRef:
         birth_date = IndDic[x].get("BIRT", "N/A")
         death_date = IndDic[x].get("DEAT", "N/A")
         person = IndDic[x].get("NAME",[])
-        for i in person:
-            out = US07.US07(birth_date, death_date)
-            if out == False:
-                print("ERROR: INDIVIDUAL: US07: "+x+": Individual is older than 150 years old")
-            else:
-                None
+        out = US07.US07(birth_date, death_date)
+        if out == False:
+            print("ERROR: INDIVIDUAL: US07: "+x+": Individual is older than 150 years old")
+        else:
+            None
 
 #=========================================================================================================================================
 """ 
@@ -350,7 +347,7 @@ if __name__ == '__main__':
 	#================ << SPRINT 1 >> ================
 	US_08() #BK
 	US_09() #BK
-        US_01() #SC
+	US_01() #SC
 	US_07() #SC
 	US_23() #HM
 	US_16() #HM
