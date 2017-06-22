@@ -148,6 +148,7 @@ with open(r'Project01.ged', 'r') as f:
 				IndRef.append(IID)
 				IndDic[IID]={}
 				birthcount = 0
+				marrcount = 0
 				
 			else:
 				FID = info[1].strip("@")
@@ -177,7 +178,14 @@ with open(r'Project01.ged', 'r') as f:
 				 	birthcount = 2
 
 				 elif FamDic[FID].get("MARR","N/A") != "N/A":
-				 	FamDic[FID]["MARR"] = " ".join(info[2:])
+				 	if FamDic[FID].get("DIV","N/A") != "N/A" and marrcount == 1:
+				 		FamDic[FID]["DIV"] = " ".join(info[2:])
+				 	else:
+				 		FamDic[FID]["MARR"] = " ".join(info[2:])
+				 		marrcount =1
+				 		
+
+
 			elif tag == "FAMS":
 				if IndDic[IID].get("Spouse","N/A") == "N/A":
 					IndDic[IID]["Spouse"] = [(" ".join(info[2:])).strip("@")]
@@ -331,7 +339,7 @@ if __name__ == '__main__':
 	    print "| {:<3} | {:<17} | {:<6} | {:<11} | {:<3} | {:<5} | {:<11} | {:<8} | {:<17} |".format(x,IndDic[x]["NAME"],IndDic[x]["SEX"],IndDic[x]["BIRT"],IndDic[x]["AGE"],IndDic[x]["Alive"],IndDic[x].get("DEAT","N/A"),IndDic[x].get("Child","None"),IndDic[x].get("Spouse","N/A"))
 	print "+"+"-"*(ID+2)+"+"+"-"*(Name+2)+"+"+"-"*(Gender+7)+"+"+"-"*(Birthday+2)+"+"+"-"*(Age+3)+"+"+"-"*(Alive+2)+"+"+"-"*(Death+2)+"+"+"-"*(Child-4)+"+"+"-"*(Spouse+5)+"+"
 
-	print "\n\n\n"
+	print "\n"
 	print "FAMILY DATABASE: \n"
 	ID,Married,Divorced,HusbandID,HusbandName,WifeID,WifeName,Children = 3,0,0,0,0,0,0,0
 	print "+"+"-"*5+"+"+"-"*13+"+"+"-"*10+"+"+"-"*12+"+"+"-"*19+"+"+"-"*9+"+"+"-"*19+"+"+"-"*24+"+"
@@ -341,7 +349,7 @@ if __name__ == '__main__':
 	    print "| {:<3} | {:<11} | {:<8} | {:<10} | {:<17} | {:<7} | {:<17} | {:<22} |".format(x,FamDic[x]["MARR"],(FamDic[x]).get("DIV","N/A"),FamDic[x]["HUSB"],IndDic[FamDic[x]["HUSB"]]["NAME"],FamDic[x]["WIFE"],IndDic[FamDic[x]["WIFE"]]["NAME"],(FamDic[x]).get("CHIL","N/A"))
 	print "+"+"-"*5+"+"+"-"*13+"+"+"-"*10+"+"+"-"*12+"+"+"-"*19+"+"+"-"*9+"+"+"-"*19+"+"+"-"*24+"+"
 
-	print "\n\n\n"
+	print "\n"
 	#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	
 	#================ << SPRINT 1 >> ================
