@@ -14,7 +14,7 @@ def test1_US01():
 
 def test2_US01():
     case2 = US01.US01("27 MAR 2029")
-    assert case2 == False
+    assert case2 == "False Birth"
     print(case2)
 
 def test3_US01():
@@ -24,12 +24,12 @@ def test3_US01():
 
 def test4_US01():
     case4 = US01.US01("27 MAR 2004", "12 DEC 2019")
-    assert case4 == False
+    assert case4 == "False Death"
     print(case4)
 
 def test5_US01():
     case5 = US01.US01("27 MAR 2019", "12 DEC 2019")
-    assert case5 == False
+    assert case5 == "False Birth" and "False Death"
     print(case5)
 
 def test6_US01():
@@ -39,12 +39,12 @@ def test6_US01():
 
 def test7_US01():
     case7 = US01.US01("27 MAR 2000", "12 DEC 2004", "10 DEC 2020")
-    assert case7 == False
+    assert case7 == "False Marr"
     print(case7)
 
 def test8_US01():
     case8 = US01.US01("27 MAR 2019", "12 DEC 2019", "10 DEC 2020")
-    assert case8 == False
+    assert case8 == "False Birth" and "False Death" and "False Marr"
     print(case8)
 
 def test9_US01():
@@ -54,15 +54,15 @@ def test9_US01():
 
 def test10_US01():
     case10 = US01.US01("27 MAR 2000", "12 DEC 2009", "10 DEC 2016", "09 JAN 2019")
-    assert case10 == False
+    assert case10 == "False Div"
     print(case10)
 
 def test11_US01():
     case11 = US01.US01("27 MAR 2018", "12 DEC 2018", "10 DEC 2019", "09 DEC 2020")
-    assert case11 == False
+    assert case11 == "False Birth" and "False Death" and "False Marr" and "False Div"
     print(case11)
 
 def test12_US01():
     case12 = US01.US01("27 MAR 2000", MARR = "10 DEC 2019", DIV = "09 JAN 2019")
-    assert case12 == False
+    assert case12 == "False Marr" and "False Div"
     print(case12)
