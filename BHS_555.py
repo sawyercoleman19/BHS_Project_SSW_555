@@ -13,6 +13,7 @@ UPDATE LOG:
 '''
 
 import datetime
+import usefulFunctions
 import US01
 import US07
 import US08
@@ -42,87 +43,6 @@ def Validation(tag): #Validates the Tag
 		return True
 	else:
 		return False
-
-'''Returns the age in years - Wil'''
-
-#Will eventually use something like below, but not for this sprint'''
-''' Added: Sawyer 6/20
-def Age(BIRT, DEAT):
-    birth_date = datetime.strptime(BIRT, '%d %b %Y')
-    death_date = datetime.strptime(DEAT, '%d %b %Y')
-    age = ((datetime.today() - birth_date) - death_date).days/365
-    #ageDeath = (death_date - birth_date).days/365
-    return age
-'''
-
-''' One way to calculate age - Barath'''
-
-def Age(BIRT, DEAT): #Return the Age in Years
-	months = {"JAN": "01","FEB":"02" ,"MAR": "03","APR": "04","MAY": "05","JUN": "06","JUL": "07","AUG":"08","SEP": "09","OCT": "10","NOV": "11","DEC": "12" }
-	today = datetime.date.today()
-	tod = str(today).split("-")
-	bir = BIRT.split(" ")[::-1]
-	bir[1] = months[bir[1]]
-	
-	if DEAT != "N/A":
-		tod = DEAT.split(" ")[::-1]
-		tod[1] = months[tod[1]]
-	
-	age = int(tod[0])-int(bir[0])
-
-	if int(tod[1]) < int(bir[1]):
-		age -= 1
-	elif int(tod[1]) == int(bir[1]) and int(tod[2]) < int(bir[2]):
-		age -= 1
-
-	return str(age)
-
-
-'''Another way to calculate age with life and death separate - Sawyer'''
-def AgeLive(DoB):
-    ''' JRR: Your logic is correct, but you can simplify it to
-        birth_date = datetime.strptime(DoB, '%d %b %Y')
-        age = (datetime.today() - birth_date).days/365
-        return age
-        '''
-    birth = DoB.split(" ")[::-1]
-    birth[1] = months[birth[1]]
-    bDay = str(birth[0])
-    bYear = str(birth[2])
-    mn = str(birth[1])
-    birth_date_orig = bDay+"/"+mn+"/"+bYear
-    birth_date = datetime.strptime(birth_date_orig, '%Y/%m/%d')
-    age = (datetime.today() - birth_date).days/365
-    
-    return age
-
-#Calculates age from date of birth to date of death
-def AgeDeath(DoB, DoD):
-    ''' JRR: Your logic is correct, but you can simplify it to
-        birth_date = datetime.strptime(DoB, '%d %b %Y')
-        death_date = datetime.strptime(DoD, '%d %b %Y')
-        age = (death_date - birth_date).days/365
-        return age
-        '''
-    birth = DoB.split(" ")[::-1]  # why reverse the string?
-    birth[1] = months[birth[1]]
-    mn = str(birth[1])
-    bDay = str(birth[0])
-    bYear = str(birth[2])
-    birth_date_orig = bDay+"/"+mn+"/"+bYear
-    birth_date = datetime.strptime(birth_date_orig, '%Y/%m/%d')
-    
-    death = DoD.split(" ")[::-1]
-    death[1] = months[death[1]]
-    mn = str(death[1])
-    dDay = str(death[0])
-    dYear = str(death[2])
-    death_date_orig = dDay+"/"+mn+"/"+dYear
-    death_date = datetime.strptime(death_date_orig, '%Y/%m/%d')
-    
-    age = (death_date - birth_date).days/365
-    
-    return age
 
 
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ Data Processing For Table +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -167,13 +87,13 @@ with open(r'Project01.ged', 'r') as f:
 			elif tag == "DATE" and level == "2":
 				 if IndDic[IID].get("BIRT","N/A") != "N/A" and birthcount == 0:
 				 	IndDic[IID]["BIRT"] = " ".join(info[2:])
-				 	IndDic[IID]["AGE"] = Age(" ".join(info[2:]),"N/A")
+				 	IndDic[IID]["AGE"] = usefulFunctions.Age(" ".join(info[2:]),"N/A")
 				 	IndDic[IID]["Alive"] = "TRUE" 
 				 	birthcount = 1
 				 	
 				 elif IndDic[IID].get("DEAT","N/A") != "N/A" and birthcount == 1:
 				 	IndDic[IID]["DEAT"] = " ".join(info[2:])
-				 	IndDic[IID]["AGE"] = Age(IndDic[IID]["BIRT"]," ".join(info[2:]))
+				 	IndDic[IID]["AGE"] = usefulFunctions.Age(IndDic[IID]["BIRT"]," ".join(info[2:]))
 				 	IndDic[IID]["Alive"] = "FALSE" 
 				 	birthcount = 2
 
