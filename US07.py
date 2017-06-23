@@ -72,10 +72,10 @@ def US07(BirthDate, DeathDate = "N/A"):
         if (AgeLive(BirthDate) < 150):
             return True
         elif (AgeLive(BirthDate) >= 150):
-            print("ERROR: INDIVIDUAL: US07: Individual "+ +" is older than 150 years old")
+            #print("ERROR: INDIVIDUAL: US07: Individual "+ +" is older than 150 years old")
             return False
     elif (AgeDeath(BirthDate, DeathDate) < 150):
         return True
     elif (AgeDeath(BirthDate, DeathDate) >= 150):
-        print("ERROR: INDIVIDUAL: US07: Individual "+ +" was older than 150 years old")
+        #print("ERROR: INDIVIDUAL: US07: Individual "+ +" was older than 150 years old")
         return False

@@ -148,6 +148,7 @@ with open(r'Project01.ged', 'r') as f:
 				IndRef.append(IID)
 				IndDic[IID]={}
 				birthcount = 0
+				marrcount = 0
 				
 			else:
 				FID = info[1].strip("@")
@@ -177,7 +178,14 @@ with open(r'Project01.ged', 'r') as f:
 				 	birthcount = 2
 
 				 elif FamDic[FID].get("MARR","N/A") != "N/A":
-				 	FamDic[FID]["MARR"] = " ".join(info[2:])
+				 	if FamDic[FID].get("DIV","N/A") != "N/A" and marrcount == 1:
+				 		FamDic[FID]["DIV"] = " ".join(info[2:])
+				 	else:
+				 		FamDic[FID]["MARR"] = " ".join(info[2:])
+				 		marrcount =1
+				 		
+
+
 			elif tag == "FAMS":
 				if IndDic[IID].get("Spouse","N/A") == "N/A":
 					IndDic[IID]["Spouse"] = [(" ".join(info[2:])).strip("@")]
@@ -258,35 +266,32 @@ def US_01():
         birth_date = IndDic[x].get("BIRT", "N/A")
         death_date = IndDic[x].get("DEAT", "N/A")
         person = IndDic[x].get("NAME",[])
-        for i in person:
-            out = US01.US01(birth_date, death_date)
-            if out == "False Birth":
-                print ("ERROR: INDIVIDUAL: US01: "+x+": The date of birth, " + birth_date +", occurs in the future")
-            if out == "False Death":
-                print ("ERROR: INDIVIDUAL: US01: "+x+": The date of death, " + death_date +", occurs in the future")
+        out = US01.US01_ind(birth_date, death_date)
+        if out == "False Birth":
+            print ("ERROR: INDIVIDUAL: US01: "+x+": The date of birth, " + birth_date +", occurs in the future")
+        if out == "False Death":
+            print ("ERROR: INDIVIDUAL: US01: "+x+": The date of death, " + death_date +", occurs in the future")
     for y in FamRef:
         marr_date = FamDic[y].get("MARR", "N/A")
         div_date = FamDic[y].get("DIV", "N/A")
         fam = FamDic[y].get("ID",[])
-        for f in fam:
-            out = US01.US01(marr_date, div_date)
-            if out == "False Marr":
-                print ("ERROR: FAMILY: US01: "+y+": The date of marriage, " + marr_date +", occurs in the future")
-            if out == "False Div":
-                print ("ERROR: FAMILY: US01: "+y+" The date of divorce, " + div_date +", occurs in the future")
-            else:
-                None
+        out = US01.US01_fam(marr_date, div_date)
+        if out == "False Marr":
+            print ("ERROR: FAMILY: US01: "+y+": The date of marriage, " + marr_date +", occurs in the future")
+        if out == "False Div":
+            print ("ERROR: FAMILY: US01: "+y+" The date of divorce, " + div_date +", occurs in the future")
+        else:
+            None
 def US_07():
     for x in IndRef:
         birth_date = IndDic[x].get("BIRT", "N/A")
         death_date = IndDic[x].get("DEAT", "N/A")
         person = IndDic[x].get("NAME",[])
-        for i in person:
-            out = US07.US07(birth_date, death_date)
-            if out == False:
-                print("ERROR: INDIVIDUAL: US07: "+x+": Individual is older than 150 years old")
-            else:
-                None
+        out = US07.US07(birth_date, death_date)
+        if out == False:
+            print("ERROR: INDIVIDUAL: US07: "+x+": Individual is older than 150 years old")
+        else:
+            None
 
 #=========================================================================================================================================
 """ 
@@ -334,7 +339,7 @@ if __name__ == '__main__':
 	    print "| {:<3} | {:<17} | {:<6} | {:<11} | {:<3} | {:<5} | {:<11} | {:<8} | {:<17} |".format(x,IndDic[x]["NAME"],IndDic[x]["SEX"],IndDic[x]["BIRT"],IndDic[x]["AGE"],IndDic[x]["Alive"],IndDic[x].get("DEAT","N/A"),IndDic[x].get("Child","None"),IndDic[x].get("Spouse","N/A"))
 	print "+"+"-"*(ID+2)+"+"+"-"*(Name+2)+"+"+"-"*(Gender+7)+"+"+"-"*(Birthday+2)+"+"+"-"*(Age+3)+"+"+"-"*(Alive+2)+"+"+"-"*(Death+2)+"+"+"-"*(Child-4)+"+"+"-"*(Spouse+5)+"+"
 
-	print "\n\n\n"
+	print "\n"
 	print "FAMILY DATABASE: \n"
 	ID,Married,Divorced,HusbandID,HusbandName,WifeID,WifeName,Children = 3,0,0,0,0,0,0,0
 	print "+"+"-"*5+"+"+"-"*13+"+"+"-"*10+"+"+"-"*12+"+"+"-"*19+"+"+"-"*9+"+"+"-"*19+"+"+"-"*24+"+"
@@ -344,13 +349,13 @@ if __name__ == '__main__':
 	    print "| {:<3} | {:<11} | {:<8} | {:<10} | {:<17} | {:<7} | {:<17} | {:<22} |".format(x,FamDic[x]["MARR"],(FamDic[x]).get("DIV","N/A"),FamDic[x]["HUSB"],IndDic[FamDic[x]["HUSB"]]["NAME"],FamDic[x]["WIFE"],IndDic[FamDic[x]["WIFE"]]["NAME"],(FamDic[x]).get("CHIL","N/A"))
 	print "+"+"-"*5+"+"+"-"*13+"+"+"-"*10+"+"+"-"*12+"+"+"-"*19+"+"+"-"*9+"+"+"-"*19+"+"+"-"*24+"+"
 
-	print "\n\n\n"
+	print "\n"
 	#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	
 	#================ << SPRINT 1 >> ================
 	US_08() #BK
 	US_09() #BK
-        US_01() #SC
+	US_01() #SC
 	US_07() #SC
 	US_23() #HM
 	US_16() #HM
