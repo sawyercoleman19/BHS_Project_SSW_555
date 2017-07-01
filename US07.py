@@ -15,12 +15,13 @@ months = {"JAN": 1,"FEB": 2 ,"MAR": 3,"APR": 4,"MAY": 5,"JUN": 6,"JUL": 7,"AUG":
 
 #Calculates the age from date of birth to current date, assuming there is no date of death
 
+
 def AgeLive(DoB):
-    '''JRR: Your logic is correct, but you can simplify it to
-        birth_date = datetime.strptime(DoB, '%d %b %Y') 
-        age = (datetime.today() - birth_date).days/365
-        return age
-    '''
+#        JRR: Your logic is correct, but you can simplify it to
+#        birth_date = datetime.strptime(DoB, '%d %b %Y')
+#        age = (datetime.today() - birth_date).days/365
+#        return age
+
     birth = DoB.split(" ")[::-1]
     birth[1] = months[birth[1]]
     bDay = str(birth[0])
@@ -36,12 +37,12 @@ def AgeLive(DoB):
 
 def AgeDeath(DoB, DoD):
 
-    '''JRR: Your logic is correct, but you can simplify it to
-        birth_date = datetime.strptime(DoB, '%d %b %Y') 
-        death_date = datetime.strptime(DoD, '%d %b %Y')
-        age = (death_date - birth_date).days/365
-        return age
-    '''
+#        JRR: Your logic is correct, but you can simplify it to
+#        birth_date = datetime.strptime(DoB, '%d %b %Y') 
+#        death_date = datetime.strptime(DoD, '%d %b %Y')
+#        age = (death_date - birth_date).days/365
+#        return age
+
     birth = DoB.split(" ")[::-1]  # why reverse the string?
     birth[1] = months[birth[1]]
     mn = str(birth[1])
@@ -62,7 +63,7 @@ def AgeDeath(DoB, DoD):
     
     return age
 
-def US07(BirthDate, DeathDate = "N/A"):
+def US07(BirthDate = "N/A", DeathDate = "N/A"):
     ''' JRR: I like how you used optional parameters for the DeathDate.   Just beware that BirthDate may be unknown as well.
         GEDCOM allows you specify both but doesn't require it.
     '''

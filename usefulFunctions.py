@@ -3,6 +3,15 @@ functions used in their user stories and add a brief description
 as to what they do. Any group member can use those functions and
 tweak them to help their own user stories if they are appropriate"""
 
+#----------------------------------------------------------------------------------
+
+#UPDATE LOG:
+
+#Sawyer 6/28 - Added NA Variable
+
+#----------------------------------------------------------------------------------
+
+
 import datetime
 
 #----------------------------------------------------------------------------------
@@ -11,6 +20,7 @@ import datetime
 
 months = {"JAN": 1, "FEB": 2 ,"MAR": 3,"APR": 4,"MAY": 5,"JUN": 6,"JUL": 7,"AUG": 8,"SEP": 9,"OCT": 10,"NOV": 11,"DEC": 12 }
 
+NA = "N/A"
 #----------------------------------------------------------------------------------
 #----------------------------------------------------------------------------------
 
@@ -29,15 +39,15 @@ def maleChild(CHIL):
 
 #Calculates age in years
 
-def Age(BIRT = "N/A", DEAT = "N/A"): #Return the Age in Years
-    if (DEAT == "N/A" and BIRT == "N/A"):
+def Age(BIRT = NA, DEAT = NA): #Return the Age in Years
+    if (DEAT == NA and BIRT == NA):
         return ("Error")
     today = datetime.date.today()
     tod = str(today).split("-")
     bir = BIRT.split(" ")[::-1]
     bir[1] = months[bir[1].upper()]
     
-    if DEAT != "N/A":
+    if DEAT != NA:
         tod = DEAT.split(" ")[::-1]
         tod[1] = months[tod[1]]
     
@@ -52,3 +62,4 @@ def Age(BIRT = "N/A", DEAT = "N/A"): #Return the Age in Years
 
 if __name__ == "__main__":
     pass
+    return age
