@@ -62,4 +62,3 @@ def Age(BIRT = NA, DEAT = NA): #Return the Age in Years
 
 if __name__ == "__main__":
     pass
-    return age
