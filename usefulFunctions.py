@@ -50,6 +50,5 @@ def Age(BIRT = "N/A", DEAT = "N/A"): #Return the Age in Years
         
     return str(age)
 
-m = Age("06 jan 2010")
-print (m)
-
+if __name__ == "__main__":
+    pass
