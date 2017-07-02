@@ -73,7 +73,9 @@ def US08(MARR,CHIL_BIRT,DIV="N/A"):
 			return "FalseBefore"
 		elif MARR_AGE[0] - CHIL_BIRT_AGE[0] == 0 and MARR_AGE[1] - CHIL_BIRT_AGE[1] < 9:
 			return "FalseBefore"
-		elif DIV_AGE[1] - CHIL_BIRT_AGE[1] > 9:
+		elif DIV_AGE[0] - CHIL_BIRT_AGE[0] > 0:
+			return "FalseAfter"
+		elif DIV_AGE[0] - CHIL_BIRT_AGE[0] == 0 and DIV_AGE[1] - CHIL_BIRT_AGE[1] < 9:
 			return "FalseAfter"
 		else:
 			return True

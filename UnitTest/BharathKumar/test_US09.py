@@ -27,18 +27,18 @@ Let us Assume Child Birth Date is constant: 05 June 1995
 Case 11: MOM N/A          DAD N/A          ==> True
 Case 12: MOM N/A          DAD 07 JUL 1996  ==> True
 Case 13: MOM N/A          DAD 05 JUN 1995  ==> True
-Case 14: MOM N/A          DAD 04 APR 1993  ==> False
-Case 15: MOM N/A          DAD 06 SEP 1994  ==> False
+Case 14: MOM N/A          DAD 04 APR 1993  ==> FalseDad
+Case 15: MOM N/A          DAD 06 SEP 1994  ==> FalseDad
 Case 21: MOM 05 JUN 1995  DAD N/A          ==> True
 Case 22: MOM 05 JUN 1995  DAD 07 JUL 1996  ==> True
 Case 23: MOM 05 JUN 1995  DAD 05 JUN 1995  ==> True
-Case 24: MOM 05 JUN 1995  DAD 04 APR 1993  ==> False
-Case 25: MOM 05 JUN 1995  DAD 06 SEP 1994  ==> False      
-Case 31: MOM 03 SEP 1994  DAD N/A          ==> False 
-Case 32: MOM 03 SEP 1994  DAD 07 JUL 1996  ==> False 
-Case 33: MOM 03 SEP 1994  DAD 05 JUN 1995  ==> False 
-Case 34: MOM 03 SEP 1994  DAD 04 APR 1993  ==> False 
-Case 35: MOM 03 SEP 1994  DAD 06 SEP 1994  ==> False      
+Case 24: MOM 05 JUN 1995  DAD 04 APR 1993  ==> FalseDad
+Case 25: MOM 05 JUN 1995  DAD 06 SEP 1994  ==> FalseDad    
+Case 31: MOM 03 SEP 1994  DAD N/A          ==> FalseMom
+Case 32: MOM 03 SEP 1994  DAD 07 JUL 1996  ==> FalseMom
+Case 33: MOM 03 SEP 1994  DAD 05 JUN 1995  ==> FalseMom
+Case 34: MOM 03 SEP 1994  DAD 04 APR 1993  ==> FalseMom
+Case 35: MOM 03 SEP 1994  DAD 06 SEP 1994  ==> FalseMom   
 """
 
 def test_US09_Case11():
@@ -52,10 +52,10 @@ def test_US09_Case13():
 	assert Case13 == True
 def test_US09_Case14():
 	Case14 = US09.US09("N/A","04 APR 1993","05 JUN 1995")
-	assert Case14 == False
+	assert Case14 == "FalseDad"
 def test_US09_Case15():
 	Case15 = US09.US09("N/A","06 SEP 1994","05 JUN 1995")
-	assert Case15 == False
+	assert Case15 == "FalseDad"
 def test_US09_Case21():
 	Case21 = US09.US09("05 JUN 1995","N/A","05 JUN 1995")
 	assert Case21 == True
@@ -67,22 +67,22 @@ def test_US09_Case23():
 	assert Case23 == True
 def test_US09_Case24():
 	Case24 = US09.US09("05 JUN 1995","04 APR 1993","05 JUN 1995")
-	assert Case24 == False
+	assert Case24 == "FalseDad"
 def test_US09_Case25():
 	Case25 = US09.US09("05 JUN 1995","06 SEP 1994","05 JUN 1995")
-	assert Case25 == False
+	assert Case25 == "FalseDad"
 def test_US09_Case31():
 	Case31 = US09.US09("03 SEP 1994","N/A","05 JUN 1995")
-	assert Case31 == False
+	assert Case31 == "FalseMom"
 def test_US09_Case32():
 	Case32 = US09.US09("03 SEP 1994","07 JUL 1996","05 JUN 1995")
-	assert Case32 == False
+	assert Case32 == "FalseMom"
 def test_US09_Case33():
 	Case33 = US09.US09("03 SEP 1994","05 JUN 1995","05 JUN 1995")
-	assert Case33 == False
+	assert Case33 == "FalseMom"
 def test_US09_Case34():
 	Case34 = US09.US09("03 SEP 1994","04 APR 1993","05 JUN 1995")
-	assert Case34 == False
+	assert Case34 == "FalseMom"
 def test_US09_Case35():
 	Case35 = US09.US09("03 SEP 1994","06 SEP 1994","05 JUN 1995")
-	assert Case35 == False
+	assert Case35 == "FalseMom"
