@@ -1,7 +1,14 @@
+'''
+    Bharath Kumar
+    US06 Functions File
+    SSW_555_Agile_Methods
+    BHS_Project_SSW_555
+    Sprint 1 
+    '''
 import datetime
 import US08
 
-def US09(MOM, DAD ,CHIL_BIRT):
+def US09(MOM, DAD ,CHIL_BIRT): #Child should be born before death of mother and before 9 months after death of father
 
 	if MOM == "N/A":
 		if DAD == "N/A":

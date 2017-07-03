@@ -1,6 +1,13 @@
+'''
+    Bharath Kumar
+    US06 Functions File
+    SSW_555_Agile_Methods
+    BHS_Project_SSW_555
+    Sprint 1 , Homework 04
+    '''
 import datetime
 
-def leapyear (year):
+def leapyear (year):  # Returns true if its a leap year and False if its not a leap year
 
 	if (year % 4) == 0:
 	   if (year % 100) == 0:
@@ -14,7 +21,7 @@ def leapyear (year):
 	   return False
 
 
-def DetAge(BIRT):
+def DetAge(BIRT): # Calculate the Detailed age and returns [ years, months, days]
 	months = {"JAN": "01","FEB":"02" ,"MAR": "03","APR": "04","MAY": "05","JUN": "06","JUL": "07","AUG":"08","SEP": "09","OCT": "10","NOV": "11","DEC": "12" }
 	today = datetime.date.today()
 	tod = str(today).split("-")
@@ -52,7 +59,7 @@ def DetAge(BIRT):
 	return compage
 
 
-def US08(MARR,CHIL_BIRT,DIV="N/A"):
+def US08(MARR,CHIL_BIRT,DIV="N/A"): # Children should be born after marriage of parents (and not more than 9 months after their divorce)
 	if DIV == "N/A":
 		MARR_AGE = DetAge(MARR)
 		CHIL_BIRT_AGE = DetAge(CHIL_BIRT)

@@ -19,13 +19,13 @@ NA = "N/A"
 
 def US07(BIRT = NA, DEAT = NA):
     if (DEAT == NA):
-        if (usefulFunctions.Age(BIRT, DEAT) < 150):
+        if (int(usefulFunctions.Age(BIRT, DEAT)) < 150):
             return True
         else:
-            print("ERROR: INDIVIDUAL: US07: Individual is older than 150 years old")
+            #print("ERROR: INDIVIDUAL: US07: Individual is older than 150 years old")
             return False
-    elif (usefulFunctions.Age(BIRT, DEAT) < 150):
+    elif (int(usefulFunctions.Age(BIRT, DEAT)) < 150):
         return True
     else:
-        print("ERROR: INDIVIDUAL: US07: Individual was older than 150 years old")
+        #print("ERROR: INDIVIDUAL: US07: Individual was older than 150 years old")
         return False

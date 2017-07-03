@@ -20,6 +20,8 @@ import US08
 import US09
 import US16
 import US23
+import US06
+import US12
 
 IndDic = {} #Dictionary containing Information of all Individual
 FamDic = {} #Dictionary containing Information of all Family
@@ -148,6 +150,7 @@ Functions to call User Stories created by Bharath
 		US08 - Birth before Marriage of Parents
 		US09 - Birth before Death of Parents
 """
+# 																SPRINT 1
 def US_08():
 	for x in FamRef:
 		CHIL = FamDic[x].get("CHIL",[])
@@ -172,6 +175,34 @@ def US_09():
 			elif out == "FalseMom":
 				print "ANOMALY: FAMILY: US09: "+x+": Child "+i+" born "+IndDic[i]["BIRT"]+" after mother's death on "+ MOM_Death		
 
+#																SPRINT 2
+def US_06():
+	for x in FamRef:
+		MOM_Death = (IndDic[FamDic[x]["WIFE"]]).get("DEAT","N/A")
+		DAD_Death = (IndDic[FamDic[x]["HUSB"]]).get("DEAT","N/A")
+		DIV = (FamDic[x]).get("DIV","N/A")
+		out = US06.US06(DAD_Death,MOM_Death,DIV)
+		for i in out:
+			if i == "FalseWife":
+				print "ERRPR: FAMILY: US06: "+x+": Wife "+IndDic[FamDic[x]["WIFE"]]["NAME"]+" ("+FamDic[x]["WIFE"]+") Died before Divorce on "+(FamDic[x]).get("DIV","N/A")
+			if i == "FalseHusb":
+				print "ERROR: FAMILY: US06: "+x+": Husband "+IndDic[FamDic[x]["HUSB"]]["NAME"]+" ("+FamDic[x]["HUSB"]+") Died before Divorce on "+(FamDic[x]).get("DIV","N/A")
+			
+
+
+def US_12():
+	for x in FamRef:
+		MOM_Birth = (IndDic[FamDic[x]["WIFE"]]).get("BIRT","N/A")
+		DAD_Birth = (IndDic[FamDic[x]["HUSB"]]).get("BIRT","N/A")
+		CHIL = FamDic[x].get("CHIL",[])
+		for i in CHIL:
+			out = US12.US12(MOM_Birth,DAD_Birth,IndDic[i]["BIRT"])
+			for y in out:
+				if y == "MOM":
+					print "ANOMALY: FAMILY: US12: "+x+": Mother "+IndDic[FamDic[x]["WIFE"]]["NAME"]+" ("+FamDic[x]["WIFE"]+") is more than 60 years older than the child "+i
+				if y == "DAD":
+					print "ANOMALY: FAMILY: US12: "+x+": Father "+IndDic[FamDic[x]["HUSB"]]["NAME"]+" ("+FamDic[x]["HUSB"]+") is more than 80 years older than the child "+i
+				
 
 #=========================================================================================================================================
 
@@ -180,6 +211,8 @@ Functions to call User Stories created by Sawyer
 		US01 - Dates before current date
 		US07 - Less than 150 years old
 """
+
+# 																SPRINT 1
 def US_01():
     
     for x in IndRef:
@@ -213,6 +246,12 @@ def US_07():
         else:
             None
 
+#																SPRINT 2
+def US_02():
+	pass
+
+def US_03():
+	pass
 #=========================================================================================================================================
 """ 
 Functions to call User Stories created by Houston
@@ -223,6 +262,7 @@ Functions to call User Stories created by Houston
 """
 imported user stories at the top of this program"""
 
+# 																SPRINT 1
 def US_23():
 	for i in FamRef:
 		HUSB = IndDic[FamDic[i]["HUSB"]]["NAME"]
@@ -231,6 +271,14 @@ def US_23():
 
 def US_16():
 	US16.US_16(IndDic)
+
+#																SPRINT 2
+def US_42():
+	pass
+
+def US_29():
+	pass
+
 #=================================================================================================================================================================================================================================================================================================
 
 #																				MAIN SECTION
@@ -279,3 +327,14 @@ if __name__ == '__main__':
 	US_07() #SC
 	US_23() #HM
 	US_16() #HM
+	
+
+	#================ << SPRINT 2 >> ================
+	US_06() #BK
+	US_12() #BK
+	US_02() #SC
+	US_03() #SC
+	US_42() #HM
+	US_29() #HM
+	
+	

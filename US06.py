@@ -1,6 +1,13 @@
+'''
+    Bharath Kumar
+    US06 Functions File
+    SSW_555_Agile_Methods
+    BHS_Project_SSW_555
+    Sprint 2
+    '''
 import US08
 
-def US06(HUSB_death = "N/A", WIFE_death = "N/A", DIV = "N/A"):
+def US06(HUSB_death = "N/A", WIFE_death = "N/A", DIV = "N/A"):# Check whether Divorce occurs before the death of both spouse
 
 	if DIV != "N/A":	
 
@@ -67,8 +74,10 @@ def US06(HUSB_death = "N/A", WIFE_death = "N/A", DIV = "N/A"):
 			return err		
 	else:
 		return []
-
-hd = "13 SEP 1978"
-wd = "13 NOV 1970"
-d =  "7 FEB 1984"
-print US06(hd,wd,d)
+		
+if __name__ == '__main__':
+		
+	hd = "13 SEP 1978"
+	wd = "13 NOV 1970"
+	d =  "7 FEB 1984"
+	print US06(hd,wd,d)
