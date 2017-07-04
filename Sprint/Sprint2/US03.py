@@ -1,6 +1,6 @@
 '''
     Sawyer Coleman
-    US02 Functions File
+    US03 Functions File
     SSW_555_Agile_Methods
     BHS_Project_SSW_555
     Project06
@@ -16,17 +16,15 @@ def toDate(dateStr):
     else:
         return datetime.strptime(dateStr, '%d %b %Y')
 
-def US02(BIRT=NA, MARR=NA):
+def US03(BIRT=NA, DEAT=NA):
     birth_dt = toDate(BIRT)
-    marr_dt = toDate(MARR)
+    death_dt = toDate(DEAT)
     
-    if (marr_dt == None):
+    if (death_dt == None):
         return True
     
     elif (birth_dt != None):
-        if (birth_dt >= marr_dt):
+        if (birth_dt >= death_dt):
             return False
 
     return True
-
-# print US02("7 FEB 1981","9 NOV 1957")
