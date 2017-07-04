@@ -14,14 +14,9 @@ UPDATE LOG:
 
 import datetime
 import usefulFunctions
-import US01
-import US07
-import US08
-import US09
-import US16
-import US23
-import US06
-import US12
+import US01, US02, US03, US07
+import US08, US09
+import US06, US12, US16, US23
 
 IndDic = {} #Dictionary containing Information of all Individual
 FamDic = {} #Dictionary containing Information of all Family
@@ -210,6 +205,8 @@ def US_12():
 Functions to call User Stories created by Sawyer
 		US01 - Dates before current date
 		US07 - Less than 150 years old
+        US02 - Birthdate before marriage
+        US03 - Birthdate before death
 """
 
 # 																SPRINT 1
@@ -248,10 +245,26 @@ def US_07():
 
 #																SPRINT 2
 def US_02():
-	pass
+
+    for x in FamRef:
+        fam = FamDic[x].get("ID",[])
+        marr_date = FamDic[x].get("MARR", "N/A")
+        #WIFE_Birth = (IndDic[FamDic[x]["WIFE"]]).get("BIRT","N/A")
+        #HUSB_Birth = (IndDic[FamDic[x]["HUSB"]]).get("BIRT","N/A")
+        for i in fam:
+            out = US02.US02(marr_date, IndDic[i]["BIRT"])
+            if out == False:
+                print ("ERROR: INDIVIDUAL: US02: "+i+": The date of birth, " +IndDic[i]["BIRT"]+ " occurs before marriage, "+ marr_date)
 
 def US_03():
-	pass
+    for x in IndRef:
+        birth_date = IndDic[x].get("BIRT", "N/A")
+        death_date = IndDic[x].get("DEAT", "N/A")
+        person = IndDic[x].get("NAME",[])
+        out = US03.US03(birth_date, death_date)
+        if out == False:
+            print ("ERROR: INDIVIDUAL: US03: "+x+": The date of birth, " + birth_date +", occurs after death" + death_date)
+
 #=========================================================================================================================================
 """ 
 Functions to call User Stories created by Houston
