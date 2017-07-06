@@ -16,7 +16,7 @@ import datetime
 import usefulFunctions
 import US01, US02, US03, US07
 import US06, US08, US09, US12
-import US16, US23
+import US16, US23, US42, US29
 
 IndDic = {} #Dictionary containing Information of all Individual
 FamDic = {} #Dictionary containing Information of all Family
@@ -288,10 +288,25 @@ def US_16():
 
 #																SPRINT 2
 def US_42():
-	pass
+	for i in IndDic:
+		if US42.US42(IndDic[i]["BIRT"]) == False:
+			print ("ERROR: INDIVIDUAL: US42: "+i+": Birth Date " + IndDic[i]["BIRT"] + " is invalid.")
+
+		if US42.US42((IndDic[i]).get("DEAT","N/A")) == False:
+			print ("ERROR: INDIVIDUAL: US42: "+i+": Death Date " + (IndDic[i]).get("DEAT","N/A") + " is invalid.")
+
+
+	for f in FamDic:
+		if US42.US42(FamDic[f]["MARR"]) == False:
+			print ("ERROR: FAMILY: US42: "+f+": Marrige Date " + FamDic[f]["MARR"] + " is invalid.")
+
+		if US42.US42((FamDic[f]).get("DIV","N/A")) == False:
+			print ("ERROR: FAMILY: US42: "+f+": Divorce Date " + (FamDic[f]).get("DIV","N/A") + " is invalid.")
+
+
 
 def US_29():
-	pass
+	US29.US29(IndDic)
 
 #=================================================================================================================================================================================================================================================================================================
 

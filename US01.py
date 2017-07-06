@@ -14,8 +14,10 @@ def toDate(dateStr):
     if dateStr == NA:
         return None
     else:
-        return datetime.strptime(dateStr, '%d %b %Y')
-
+        try:
+            return datetime.strptime(dateStr, '%d %b %Y')
+        except ValueError:
+            return None
 def US01_ind(BIRT=NA, DEAT=NA):
     CrntDate = datetime.today()
     birth_dt = toDate(BIRT)
