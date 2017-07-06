@@ -7,9 +7,11 @@ def US29(IndDic):
 		if IndDic[a].get("DEAT","N/A") == "N/A":
 			pass
 		else:
-			deathList.append("ID: "+a+" Name: "+IndDic[a]["NAME"])
-
-	print "RESULT: INDIVIDUAL: US29: List of Individuals Deceased: {}".format(deathList)
+			deathList.append("ID: "+a+", Name: "+IndDic[a]["NAME"])
+	if deathList == []:
+		print "RESULT: INDIVIDUAL: US29: No Individuals Deceased"
+	else:
+		print "RESULT: INDIVIDUAL: US29: List of Individuals Deceased: {}".format(deathList)
 
     
     #add id, name and death dtae to output
