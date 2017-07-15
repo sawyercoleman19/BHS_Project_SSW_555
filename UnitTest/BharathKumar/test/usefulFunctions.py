@@ -29,17 +29,19 @@ NA = "N/A"
 
 
 #This function from US23 returns all male children given list of children
+# Dont Call this function from useful function call this function from US23 there is another copy in that file
+# If u call it will be a deadlock
 
+"""
 
-
-def maleChild(CHIL):# Dont Call this function from useful function call this function from US23 there is another copy in that file
+def maleChild(CHIL):
 	male_Child = []
 	for j in CHIL:
 		if db.IndDic[j]["SEX"] == "M":
 			#print db.IndDic[j]["NAME"]
 			male_Child.append(db.IndDic[j]["NAME"])
 	return male_Child.sorted()
-
+"""
 #Calculates age in years
 
 def Age(BIRT = NA, DEAT = NA): #Return the Age in Years
@@ -71,5 +73,36 @@ def firstChild(CHIL):
         chilage[int(db.IndDic[j]["AGE"])] = j
     return chilage[sorted(chilage.keys())[-1]]
 """
+
+# This function is used in US08, US09
+
+def leapyear (year):  # Returns true if its a leap year and False if its not a leap year
+
+    if (year % 4) == 0:
+       if (year % 100) == 0:
+           if (year % 400) == 0:
+               return True
+           else:
+               return False
+       else:
+           return True
+    else:
+       return False
+
+# This function is used in US35, US36
+
+def TimeDelta(NOday): #Returns the date after number of days from today if its positive before the number of days from today if negative
+    tday = datetime.date.today()
+    tdelta = datetime.timedelta(days=NOday)
+    return(tday + tdelta)
+
+def NoDays(year,month,date): #Returns the number of days from today
+    startDate = datetime.date(year, month, date)
+    tday = datetime.date.today()
+    return(startDate - tday).days
+
+def MonthInNum(mon):
+    return str(months[mon.upper()])
+
 if __name__ == "__main__":
     pass
