@@ -198,6 +198,12 @@ def US_12():
 				if y == "DAD":
 					print "ANOMALY: FAMILY: US12: "+x+": Father "+IndDic[FamDic[x]["HUSB"]]["NAME"]+" ("+FamDic[x]["HUSB"]+") is more than 80 years older than the child "+i
 				
+#																SPRINT 3
+def US_35():
+	pass
+
+def US_36():
+	pass
 
 #=========================================================================================================================================
 
@@ -266,6 +272,13 @@ def US_03():
         if out == False:
             print ("ERROR: INDIVIDUAL: US03: "+x+": The date of birth, " + birth_date +", occurs after death " + death_date)
 
+#																SPRINT 3
+def US_04():
+	pass
+
+def US_05():
+	pass
+
 #=========================================================================================================================================
 """ 
 Functions to call User Stories created by Houston
@@ -303,11 +316,15 @@ def US_42():
 		if US42.US42((FamDic[f]).get("DIV","N/A")) == False:
 			print ("ERROR: FAMILY: US42: "+f+": Divorce Date " + (FamDic[f]).get("DIV","N/A") + " is invalid.")
 
-
-
 def US_29():
 	US29.US29(IndDic)
 
+#																SPRINT 3
+def US_22():
+	pass
+
+def US_15():
+	pass
 #=================================================================================================================================================================================================================================================================================================
 
 #																				MAIN SECTION
@@ -365,5 +382,12 @@ if __name__ == '__main__':
 	US_03() #SC
 	US_42() #HM
 	US_29() #HM
-	
-	
+
+
+	#================ << SPRINT 3 >> ================
+	US_35() #BK
+	US_36() #BK
+	US_04() #SC
+	US_05() #SC
+	US_22() #HM
+	US_15() #HM
