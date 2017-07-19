@@ -16,7 +16,7 @@ import datetime
 import usefulFunctions
 import US01, US02, US03, US07
 import US06, US08, US09, US12, US35, US36
-import US16, US23, US42, US29
+import US16, US23, US42, US29, US22, US15
 
 IndDic = {} #Dictionary containing Information of all Individual
 FamDic = {} #Dictionary containing Information of all Family
