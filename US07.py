@@ -8,7 +8,6 @@
 
 from datetime import datetime
 import calendar
-import BHS_555
 import usefulFunctions
 
 NA = "N/A"
