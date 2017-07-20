@@ -365,10 +365,18 @@ def US_29():
 
 #																SPRINT 3
 def US_22():
-	pass
+	out = US22.US22(IndRef)
+	if out:
+		for i in out:
+			print ("ERROR: INDIVIDUAL: US22: "+i+": Have a Duplicate ID")
+
 
 def US_15():
-	pass
+	out = US15.US15(FamDic)
+	if out != True:
+		print ("ERROR: FAMILY: US15: "+out+": All Child in the Family " + out + " is having more than 15 siblings.")
+
+
 #=================================================================================================================================================================================================================================================================================================
 
 #																				MAIN SECTION

@@ -1,9 +1,10 @@
-def US_22(Indref):
-	check = set(Indref)
+def US22(IndRef):
+	error = []
+	if len(IndRef) != len(set(IndRef)):
+		for p in IndRef:
+			ql = IndRef[0:p]+IndRef[p+1:]
+			for q in ql :
+				if p == q :
+					error.append(q)
 
-	if len(check) == len(Indref):
-		print(True)
-		pass
-
-	else:
-		print("Error in US 22: Make sure all users have unique IDs!")
+	return set(error)
