@@ -14,9 +14,9 @@ UPDATE LOG:
 
 import datetime
 import usefulFunctions
-import US01, US02, US03, US07
+import US01, US02, US03, US04, US05, US07
 import US06, US08, US09, US12, US35, US36
-import US16, US23, US42, US29
+import US16, US23, US42, US29, US22, US15
 
 IndDic = {} #Dictionary containing Information of all Individual
 FamDic = {} #Dictionary containing Information of all Family
@@ -240,6 +240,8 @@ Functions to call User Stories created by Sawyer
 		US07 - Less than 150 years old
         US02 - Birthdate before marriage
         US03 - Birthdate before death
+        US04 - Marriage before divorce
+        US05 - Marriage before death
 """
 
 # 																SPRINT 1
@@ -301,10 +303,24 @@ def US_03():
 
 #																SPRINT 3
 def US_04():
-	pass
+    for x in FamRef:
+        marr_date = FamDic[x].get("MARR", "N/A")
+        div_date = FamDic[x].get("DIV", "N/A")
+        out = US04.US04(marr_date, div_date)
+        if out == False:
+            print ("ERROR: FAMILY: US04: "+x+": The date of marriage, " +marr_date+ " occurs after the date of divorce, "+ div_date)
 
 def US_05():
-	pass
+    for x in FamRef:
+        marr_date = FamDic[x].get("MARR", "N/A")
+        WIFE_Death = (IndDic[FamDic[x]["WIFE"]]).get("DEAT","N/A")
+        HUSB_Death = (IndDic[FamDic[x]["HUSB"]]).get("DEAT","N/A")
+        out = US05.US05(WIFE_Death,marr_date)
+        if out == False:
+            print ("ERROR: INDIVIDUAL: US05: "+FamDic[x]["WIFE"]+": The date of marriage, " +marr_date+ " occurs after death, "+ WIFE_Death)
+        out = US05.US05(HUSB_Death,marr_date)
+        if out == False:
+            print ("ERROR: INDIVIDUAL: US05: "+FamDic[x]["HUSB"]+": The date of marriage, " +marr_date+ " occurs after death, "+ HUSB_Death)
 
 #=========================================================================================================================================
 """ 
@@ -348,10 +364,17 @@ def US_29():
 
 #																SPRINT 3
 def US_22():
-	pass
+	out = US22.US22(IndRef)
+	if out:
+		for i in out:
+			print ("ERROR: INDIVIDUAL: US22: "+i+": Have a Duplicate ID")
+
 
 def US_15():
-	pass
+	out = US15.US15(FamDic)
+	if out != True:
+		print ("ERROR: FAMILY: US15: "+out+": All Child in the Family " + out + " is having more than 15 siblings.")
+
 #=================================================================================================================================================================================================================================================================================================
 
 #																				MAIN SECTION
