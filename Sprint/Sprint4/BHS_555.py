@@ -15,7 +15,7 @@ UPDATE LOG:
 import datetime
 import usefulFunctions
 import US01, US02, US03, US04, US05, US07
-import US06, US08, US09, US12, US35, US36
+import US06, US08, US09, US12, US35, US36, US38, US39
 import US16, US23, US42, US29, US22, US15
 
 IndDic = {} #Dictionary containing Information of all Individual
@@ -238,6 +238,40 @@ def US_36():
 			for i in err[1:]:
 				print " "*len("RESULT: INDIVIDUAL: US36: List of Recently Dead Individuals: ")+i
 
+
+#																SPRINT 4
+def US_38():
+	birtDict = {}
+	err = []
+	for x in IndRef:
+		birtDict[x] = IndDic[x].get("BIRT", "N/A")
+	out = US38.US38(birtDict)
+	for a in out:
+		err.append("=> ID: "+a+"  Name: "+IndDic[a]["NAME"])
+	if err == []:
+		print "RESULT: INDIVIDUAL: US38: No Individuals have Birthday in next 30 days"
+	else:
+		print "RESULT: INDIVIDUAL: US38: List of Individuals with upcoming Birthdays: {}".format(err[0])
+		if len(err)>1:
+			for i in err[1:]:
+				print " "*len("RESULT: INDIVIDUAL: US38: List of Individuals with upcoming Birthdays: ")+i
+
+def US_39():
+	marrDict = {}
+	err = []
+	for x in FamRef:
+		marrDict[x] = FamDic[x].get("MARR", "N/A")
+	out = US38.US38(marrDict)
+	for a in out:
+		err.append("=> ID: "+a+"  Husband Name: "+IndDic[FamDic[a]["HUSB"]]["NAME"]+"  Wife Name: "+IndDic[FamDic[a]["WIFE"]]["NAME"])
+	if err == []:
+		print "RESULT: INDIVIDUAL: US39: No Individuals have Birthday in next 30 days"
+	else:
+		print "RESULT: INDIVIDUAL: US39: List of Individuals with upcoming Anniversary: {}".format(err[0])
+		if len(err)>1:
+			for i in err[1:]:
+				print " "*len("RESULT: INDIVIDUAL: US39: List of Individuals with upcoming Anniversary: ")+i
+
 #=========================================================================================================================================
 
 """ 
@@ -328,6 +362,14 @@ def US_05():
         if out == False:
             print ("ERROR: INDIVIDUAL: US05: "+FamDic[x]["HUSB"]+": The date of marriage, " +marr_date+ " occurs after death, "+ HUSB_Death)
 
+ #																SPRINT 4
+def US_10():
+	pass
+
+def US_21():
+	pass
+
+
 #=========================================================================================================================================
 """ 
 Functions to call User Stories created by Houston
@@ -381,6 +423,14 @@ def US_15():
 	if out != None:
 		print ("ERROR: FAMILY: US15: "+out+": All Child in the Family " + out + " is having more than 15 siblings.")
 
+#																SPRINT 4
+def US_18():
+	pass
+
+def US_27():
+	pass
+
+
 #=================================================================================================================================================================================================================================================================================================
 
 #																				MAIN SECTION
@@ -403,10 +453,10 @@ if __name__ == '__main__':
 
 	print "INDIVIDUAL DATABASE: \n"
 	print "+"+"-"*(ID+2)+"+"+"-"*(Name+2)+"+"+"-"*(Gender+7)+"+"+"-"*(Birthday+2)+"+"+"-"*(Age+3)+"+"+"-"*(Alive+2)+"+"+"-"*(Death+2)+"+"+"-"*(Child-4)+"+"+"-"*(Spouse+5)+"+"
-	print "| {:<3} | {:<17} | {:<6} | {:<11} | {:<5} | {:<5} | {:<11} | {:<8} | {:<17} |".format("ID","Name","Gender","Birthday","Age","Alive","Death","Child","Spouse")
+	print "| {:<3} | {:<18} | {:<6} | {:<11} | {:<5} | {:<5} | {:<11} | {:<8} | {:<17} |".format("ID","Name","Gender","Birthday","Age","Alive","Death","Child","Spouse")
 	print "+"+"-"*(ID+2)+"+"+"-"*(Name+2)+"+"+"-"*(Gender+7)+"+"+"-"*(Birthday+2)+"+"+"-"*(Age+3)+"+"+"-"*(Alive+2)+"+"+"-"*(Death+2)+"+"+"-"*(Child-4)+"+"+"-"*(Spouse+5)+"+"
 	for x in IndRef:
-	    print "| {:<3} | {:<17} | {:<6} | {:<11} | {:<5} | {:<5} | {:<11} | {:<8} | {:<17} |".format(x,IndDic[x]["NAME"],IndDic[x]["SEX"],IndDic[x]["BIRT"],IndDic[x]["AGE"],IndDic[x]["Alive"],IndDic[x].get("DEAT","N/A"),IndDic[x].get("Child","None"),IndDic[x].get("Spouse","N/A"))
+	    print "| {:<3} | {:<18} | {:<6} | {:<11} | {:<5} | {:<5} | {:<11} | {:<8} | {:<17} |".format(x,IndDic[x]["NAME"],IndDic[x]["SEX"],IndDic[x]["BIRT"],IndDic[x]["AGE"],IndDic[x]["Alive"],IndDic[x].get("DEAT","N/A"),IndDic[x].get("Child","None"),IndDic[x].get("Spouse","N/A"))
 	print "+"+"-"*(ID+2)+"+"+"-"*(Name+2)+"+"+"-"*(Gender+7)+"+"+"-"*(Birthday+2)+"+"+"-"*(Age+3)+"+"+"-"*(Alive+2)+"+"+"-"*(Death+2)+"+"+"-"*(Child-4)+"+"+"-"*(Spouse+5)+"+"
 
 	print "\n"
@@ -447,3 +497,12 @@ if __name__ == '__main__':
 	US_05() #SC
 	US_22() #HM
 	US_15() #HM
+
+
+	#================ << SPRINT 4 >> ================
+	US_38() #BK
+	US_39() #BK
+	US_10() #SC
+	US_21() #SC
+	US_18() #HM
+	US_27() #HM
