@@ -144,6 +144,12 @@ with open(r'Project01.ged', 'r') as f:
 Functions to call User Stories created by Bharath
 		US08 - Birth before Marriage of Parents
 		US09 - Birth before Death of Parents
+		US06 - Divorce before death
+		US12 - Parents not too old
+		US35 - List recent births
+		US36 - List recent deaths
+		US38 - List upcoming birthdays
+		US39 - List upcoming anniversaries
 """
 # 																SPRINT 1
 def US_08():
