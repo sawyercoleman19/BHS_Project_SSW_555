@@ -17,7 +17,7 @@ import datetime
 import usefulFunctions
 import US01, US02, US03, US04, US05, US07
 import US06, US08, US09, US12, US35, US36, US38, US39
-import US16, US23, US42, US29, US22, US15
+import US16, US23, US42, US29, US22, US15, US18
 
 IndDic = {} #Dictionary containing Information of all Individual
 FamDic = {} #Dictionary containing Information of all Family
@@ -426,7 +426,7 @@ def US_15():
 
 #																SPRINT 3
 def US_18():
-	pass
+	US18.US18(IndDic,FamDic)
 
 def US_27():
 	pass
