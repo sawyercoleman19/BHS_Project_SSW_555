@@ -85,6 +85,7 @@ with open(r'Project01.ged', 'r') as f:
 			elif tag == "DATE" and level == "2":
 				 if IndDic[IID].get("BIRT","N/A") != "N/A" and birthcount == 0:
 				 	IndDic[IID]["BIRT"] = " ".join(info[2:])
+					#this line of code below encompasses US27 - Professor Rowland 
 				 	IndDic[IID]["AGE"] = usefulFunctions.Age(" ".join(info[2:]),"N/A")
 				 	IndDic[IID]["Alive"] = "TRUE" 
 				 	birthcount = 1
