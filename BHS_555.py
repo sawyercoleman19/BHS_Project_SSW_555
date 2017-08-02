@@ -16,8 +16,8 @@ UPDATE LOG:
 import datetime
 import usefulFunctions
 import US01, US02, US03, US04, US05, US07
-import US06, US08, US09, US12, US35, US36
-import US16, US23, US42, US29, US22, US15
+import US06, US08, US09, US12, US35, US36, US38, US39
+import US16, US23, US42, US29, US22, US15, US18
 
 IndDic = {} #Dictionary containing Information of all Individual
 FamDic = {} #Dictionary containing Information of all Family
@@ -85,6 +85,7 @@ with open(r'Project01.ged', 'r') as f:
 			elif tag == "DATE" and level == "2":
 				 if IndDic[IID].get("BIRT","N/A") != "N/A" and birthcount == 0:
 				 	IndDic[IID]["BIRT"] = " ".join(info[2:])
+					#this line of code below encompasses US27 - Professor Rowland 
 				 	IndDic[IID]["AGE"] = usefulFunctions.Age(" ".join(info[2:]),"N/A")
 				 	IndDic[IID]["Alive"] = "TRUE" 
 				 	birthcount = 1
@@ -145,6 +146,12 @@ with open(r'Project01.ged', 'r') as f:
 Functions to call User Stories created by Bharath
 		US08 - Birth before Marriage of Parents
 		US09 - Birth before Death of Parents
+		US06 - Divorce before death
+		US12 - Parents not too old
+		US35 - List recent births
+		US36 - List recent deaths
+		US38 - List upcoming birthdays
+		US39 - List upcoming anniversaries
 """
 # 																SPRINT 1
 def US_08():
@@ -232,6 +239,40 @@ def US_36():
 		if len(err)>1:
 			for i in err[1:]:
 				print " "*len("RESULT: INDIVIDUAL: US36: List of Recently Dead Individuals: ")+i
+
+#																SPRINT 3
+def US_38():
+	birtDict = {}
+	err = []
+	for x in IndRef:
+		birtDict[x] = IndDic[x].get("BIRT", "N/A")
+	out = US38.US38(birtDict)
+	for a in out:
+		err.append("=> ID: "+a+"  Name: "+IndDic[a]["NAME"])
+	if err == []:
+		print "RESULT: INDIVIDUAL: US38: No Individuals have Birthday in next 30 days"
+	else:
+		print "RESULT: INDIVIDUAL: US38: List of Individuals with upcoming Birthdays: {}".format(err[0])
+		if len(err)>1:
+			for i in err[1:]:
+				print " "*len("RESULT: INDIVIDUAL: US38: List of Individuals with upcoming Birthdays: ")+i
+
+def US_39():
+	marrDict = {}
+	err = []
+	for x in FamRef:
+		marrDict[x] = FamDic[x].get("MARR", "N/A")
+	out = US38.US38(marrDict)
+	for a in out:
+		err.append("=> ID: "+a+"  Husband Name: "+IndDic[FamDic[a]["HUSB"]]["NAME"]+"  Wife Name: "+IndDic[FamDic[a]["WIFE"]]["NAME"])
+	if err == []:
+		print "RESULT: INDIVIDUAL: US39: No Individuals have Birthday in next 30 days"
+	else:
+		print "RESULT: INDIVIDUAL: US39: List of Individuals with upcoming Anniversary: {}".format(err[0])
+		if len(err)>1:
+			for i in err[1:]:
+				print " "*len("RESULT: INDIVIDUAL: US39: List of Individuals with upcoming Anniversary: ")+i
+
 
 #=========================================================================================================================================
 
@@ -322,6 +363,13 @@ def US_05():
         if out == False:
             print ("ERROR: INDIVIDUAL: US05: "+FamDic[x]["HUSB"]+": The date of marriage, " +marr_date+ " occurs after death, "+ HUSB_Death)
 
+#																SPRINT 3
+def US_10():
+	pass
+
+def US_21():
+	pass
+
 
 #=========================================================================================================================================
 """ 
@@ -365,10 +413,27 @@ def US_29():
 
 #																SPRINT 3
 def US_22():
-	pass
+	out = US22.US22(IndRef)
+	if out:
+		for i in out:
+			print ("ERROR: INDIVIDUAL: US22: "+i+": Have a Duplicate ID")
+
 
 def US_15():
+	out = US15.US15(FamDic)
+	if out != None:
+		print ("ERROR: FAMILY: US15: "+out+": All Child in the Family " + out + " is having more than 15 siblings.")
+
+#																SPRINT 3
+def US_18():
+	for i in US18.US18(IndDic,FamDic):
+		if i:
+			print i
+
+def US_27():
 	pass
+
+
 #=================================================================================================================================================================================================================================================================================================
 
 #																				MAIN SECTION
@@ -435,3 +500,12 @@ if __name__ == '__main__':
 	US_05() #SC
 	US_22() #HM
 	US_15() #HM
+
+
+	#================ << SPRINT 4 >> ================
+	US_38() #BK
+	US_39() #BK
+	US_10() #SC
+	US_21() #SC
+	US_18() #HM
+	US_27() #HM

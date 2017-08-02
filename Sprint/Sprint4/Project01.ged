@@ -142,6 +142,152 @@
 1 BIRT
 2 DATE 2 SEP 1961
 1 FAMS @F3@
+0 @I14@ INDI
+1 NAME Madison /Gonzalez/
+2 GIVN Madison
+2 SURN Gonzalez
+2 _MARNM Gonzalez
+1 SEX F
+1 BIRT
+2 DATE 11 JUL 2017
+1 FAMC @F3@
+0 @I14@ INDI
+1 NAME Madison /Gonzalez/
+2 GIVN Madison
+2 SURN Gonzalez
+2 _MARNM Gonzalez
+1 SEX F
+1 BIRT
+2 DATE 11 JUL 2017
+1 FAMC @F3@
+0 @I15@ INDI
+1 NAME Laura /Gonzalez/
+2 GIVN Laura
+2 SURN Gonzalez
+2 _MARNM Gonzalez
+1 SEX F
+1 BIRT
+2 DATE 15 JUL 2017
+1 FAMC @F3@
+0 @I16@ INDI
+1 NAME Sarah /Gonzalez/
+2 GIVN Sarah
+2 SURN Gonzalez
+2 _MARNM Gonzalez
+1 SEX F
+1 BIRT
+2 DATE 16 AUG 2016
+1 FAMC @F3@
+0 @I17@ INDI
+1 NAME Pheobe /Gonzalez/
+2 GIVN Pheobe
+2 SURN Gonzalez
+2 _MARNM Gonzalez
+1 SEX F
+1 BIRT
+2 DATE 17 AUG 2016
+1 FAMC @F3@
+0 @I18@ INDI
+1 NAME Racheal /Gonzalez/
+2 GIVN Racheal
+2 SURN Gonzalez
+2 _MARNM Gonzalez
+1 SEX F
+1 BIRT
+2 DATE 18 AUG 2016
+1 FAMC @F3@
+0 @I19@ INDI
+1 NAME Monica /Gonzalez/
+2 GIVN Monica
+2 SURN Gonzalez
+2 _MARNM Gonzalez
+1 SEX F
+1 BIRT
+2 DATE 19 AUG 2016
+1 FAMC @F3@
+0 @I19@ INDI
+1 NAME Janice /Gonzalez/
+2 GIVN Janice
+2 SURN Gonzalez
+2 _MARNM Gonzalez
+1 SEX F
+1 BIRT
+2 DATE 19 JUL 2017
+1 FAMC @F3@
+0 @I20@ INDI
+1 NAME Andrea /Gonzalez/
+2 GIVN Andrea
+2 SURN Gonzalez
+2 _MARNM Gonzalez
+1 SEX F
+1 BIRT
+2 DATE 20 JUL 2017
+1 FAMC @F3@
+0 @I21@ INDI
+1 NAME Amy /Gonzalez/
+2 GIVN Amy
+2 SURN Gonzalez
+2 _MARNM Gonzalez
+1 SEX F
+1 BIRT
+2 DATE 21 JUL 2017
+1 FAMC @F3@
+0 @I22@ INDI
+1 NAME Emma /Gonzalez/
+2 GIVN Emma
+2 SURN Gonzalez
+2 _MARNM Gonzalez
+1 SEX F
+1 BIRT
+2 DATE 22 JUL 2017
+1 FAMC @F3@
+0 @I23@ INDI
+1 NAME Emily /Gonzalez/
+2 GIVN Emily
+2 SURN Gonzalez
+2 _MARNM Gonzalez
+1 SEX F
+1 BIRT
+2 DATE 23 JUL 2017
+1 FAMC @F3@
+0 @I24@ INDI
+1 NAME Martha /Gonzalez/
+2 GIVN Martha
+2 SURN Gonzalez
+2 _MARNM Gonzalez
+1 SEX F
+1 BIRT
+2 DATE 24 JUL 2017
+1 FAMC @F3@
+0 @I25@ INDI
+1 NAME Ross /Gonzalez/
+2 GIVN Ross
+2 SURN Gonzalez
+2 _MARNM Gonzalez
+1 SEX F
+1 BIRT
+2 DATE 25 JUL 2017
+1 FAMC @F3@
+1 FAMS @F2@
+0 @I26@ INDI
+1 NAME Anika /Gonzalez/
+2 GIVN Anika
+2 SURN Gonzalez
+2 _MARNM Gonzalez
+1 SEX F
+1 BIRT
+2 DATE 26 JUL 2017
+1 FAMC @F3@
+1 FAMS @F2@
+0 @I27@ INDI
+1 NAME Ashley /Gonzalez/
+2 GIVN Ashley
+2 SURN Gonzalez
+2 _MARNM Gonzalez
+1 SEX F
+1 BIRT
+2 DATE 27 JUL 2017
+1 FAMC @F3@
 0 @F1@ FAM
 1 HUSB @I1@
 1 WIFE @I2@
@@ -150,7 +296,7 @@
 1 MARR
 2 DATE 9 NOV 1957
 1 DIV
-2 DATE 9 NOV 1997
+2 DATE 9 NOV 1947
 1 EVEN
 2 TYPE Ending
 1 _CURRENT N
@@ -170,6 +316,21 @@
 1 CHIL @I7@
 1 CHIL @I8@
 1 CHIL @I9@
+1 CHIL @I14@
+1 CHIL @I14@
+1 CHIL @I15@
+1 CHIL @I16@
+1 CHIL @I17@
+1 CHIL @I18@
+1 CHIL @I19@
+1 CHIL @I20@
+1 CHIL @I21@
+1 CHIL @I22@
+1 CHIL @I23@
+1 CHIL @I24@
+1 CHIL @I25@
+1 CHIL @I26@
+1 CHIL @I27@
 1 MARR
 2 DATE 3 MAR 1991
 1 _CURRENT Y
@@ -177,6 +338,14 @@
 1 HUSB @I11@
 1 WIFE @I12@
 1 MARR
-2 DATE 27 JUL 2009
+2 DATE 27 AUG 2009
+1 _CURRENT Y
+0 @F5@ FAM
+1 HUSB @I25@
+1 WIFE @I26@
+1 MARR
+2 DATE 20 JUN 1999
+1 DIV
+2 DATE 20 MAR 2020
 1 _CURRENT Y
 0 TRLR
