@@ -240,7 +240,7 @@ def US_36():
 			for i in err[1:]:
 				print " "*len("RESULT: INDIVIDUAL: US36: List of Recently Dead Individuals: ")+i
 
-#																SPRINT 3
+#																SPRINT 4
 def US_38():
 	birtDict = {}
 	err = []
@@ -284,6 +284,8 @@ Functions to call User Stories created by Sawyer
         US03 - Birthdate before death
         US04 - Marriage before divorce
         US05 - Marriage before death
+        US10 - Marraige after 14
+        US21 - Correct Gender for roles
 """
 
 # 																SPRINT 1
@@ -363,12 +365,26 @@ def US_05():
         if out == False:
             print ("ERROR: INDIVIDUAL: US05: "+FamDic[x]["HUSB"]+": The date of marriage, " +marr_date+ " occurs after death, "+ HUSB_Death)
 
-#																SPRINT 3
+#																SPRINT 4
 def US_10():
-	pass
+    for x in FamRef:
+        marr_date = FamDic[x].get("MARR", "N/A")
+        WIFE_Birth = (IndDic[FamDic[x]["WIFE"]]).get("BIRT","N/A")
+        HUSB_Birth = (IndDic[FamDic[x]["HUSB"]]).get("BIRT","N/A")
+        out = US10.US10(WIFE_Birth,marr_date)
+        if out == False:
+            print ("ERROR: INDIVIDUAL: US10: "+FamDic[x]["WIFE"]+": The date of marriage, " + marr_date + " does not occur at least 14 years after birth date "+ WIFE_Birth)
+        out = US02.US02(HUSB_Birth,marr_date)
+        if out == False:
+            print ("ERROR: INDIVIDUAL: US10: "+FamDic[x]["HUSB"]+": The date of marriage, " + marr_date + " does not occur at least 14 years after birth date "+ HUSB_Birth)
 
 def US_21():
-	pass
+    for x in FamRef:
+        WIFE_Sex = (IndDic[FamDic[x]["WIFE"]]).get("SEX","N/A")
+        HUSB_Sex = (IndDic[FamDic[x]["HUSB"]]).get("SEX","N/A")
+        out = US21.US21(WIFE_Sex, HUSB_Sex)
+        if out == False:
+            print ("ANOMALY: FAMILY: US21: "+x+": The gender, " +WIFE_Sex+ ", of wife and/or gender, " +HUSB_Sex+ ", of husband is incorrect for their role")
 
 
 #=========================================================================================================================================
@@ -424,7 +440,7 @@ def US_15():
 	if out != None:
 		print ("ERROR: FAMILY: US15: "+out+": All Child in the Family " + out + " is having more than 15 siblings.")
 
-#																SPRINT 3
+#																SPRINT 4
 def US_18():
 	for i in US18.US18(IndDic,FamDic):
 		if i:
