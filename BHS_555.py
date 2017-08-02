@@ -426,7 +426,9 @@ def US_15():
 
 #																SPRINT 3
 def US_18():
-	US18.US18(IndDic,FamDic)
+	for i in US18.US18(IndDic,FamDic):
+		if i:
+			print i
 
 def US_27():
 	pass
