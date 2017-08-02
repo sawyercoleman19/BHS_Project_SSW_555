@@ -1,1 +1,7 @@
-{}
+{
+  "test_US22.py::test1_US22": true, 
+  "test_US22.py::test2_US22": true, 
+  "test_US22.py::test3_US22": true, 
+  "test_US22.py::test4_US22": true, 
+  "test_US22.py::test5_US22": true
+}
