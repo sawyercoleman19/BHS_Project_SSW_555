@@ -14,7 +14,7 @@ UPDATE LOG:
 
 import datetime
 import usefulFunctions
-import US01, US02, US03, US04, US05, US07
+import US01, US02, US03, US04, US05, US07, US10, US21
 import US06, US08, US09, US12, US35, US36, US38, US39
 import US16, US23, US42, US29, US22, US15, US18
 
@@ -364,10 +364,25 @@ def US_05():
 
  #																SPRINT 4
 def US_10():
-	pass
+    for x in FamRef:
+        marr_date = FamDic[x].get("MARR", "N/A")
+        WIFE_Birth = (IndDic[FamDic[x]["WIFE"]]).get("BIRT","N/A")
+        HUSB_Birth = (IndDic[FamDic[x]["HUSB"]]).get("BIRT","N/A")
+        out = US10.US10(WIFE_Birth,marr_date)
+        if out == False:
+            print ("ERROR: INDIVIDUAL: US10: "+FamDic[x]["WIFE"]+": The date of marriage, " + marr_date + " does not occur at least 14 years after birth date "+ WIFE_Birth)
+        out = US02.US02(HUSB_Birth,marr_date)
+        if out == False:
+            print ("ERROR: INDIVIDUAL: US10: "+FamDic[x]["HUSB"]+": The date of marriage, " + marr_date + " does not occur at least 14 years after birth date "+ HUSB_Birth)
 
 def US_21():
-	pass
+    for x in FamRef:
+        WIFE_Sex = (IndDic[FamDic[x]["WIFE"]]).get("SEX","N/A")
+        HUSB_Sex = (IndDic[FamDic[x]["HUSB"]]).get("SEX","N/A")
+        out = US21.US21(WIFE_Sex, HUSB_Sex)
+        if out != True:
+        	print "ANOMALY: FAMILY: US21: "+x+": The gender of " +out+ ", in family " +x+ ", is incorrect for their role"
+
 
 
 #=========================================================================================================================================
