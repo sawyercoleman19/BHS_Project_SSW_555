@@ -431,7 +431,14 @@ def US_18():
 			print i
 
 def US_27():
-	pass
+	x = 1
+	for i in IndRef:
+		if x == 1:
+			print "RESULT: INDIVIDUAL: US27: List of Individuals with their Ages: Name: {:<17}  Age: {}".format(IndDic[i]["NAME"], IndDic[i]["AGE"])	
+			x = 0
+		else:
+			print (len("RESULT: INDIVIDUAL: US27: List of Individuals with their Ages: "))*" "+"Name: {:<17}  Age: {}".format(IndDic[i]["NAME"], IndDic[i]["AGE"])
+
 
 
 #=================================================================================================================================================================================================================================================================================================
