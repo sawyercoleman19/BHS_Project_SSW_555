@@ -1,0 +1,132 @@
+INDIVIDUAL DATABASE: 
+
++-----+--------------------+--------+-------------+-------+-------+-------------+----------+-------------------+
+| ID  | Name               | Gender | Birthday    | Age   | Alive | Death       | Child    | Spouse            |
++-----+--------------------+--------+-------------+-------+-------+-------------+----------+-------------------+
+| I01 | David /Jole/       | M      | 7 FEB 0941  | -63   | FALSE | 13 SEP 0878 | None     | ['F1']            |
+| I02 | Jillian /Kelly/    | F      | 53 APR 1939 | 78    | TRUE  | N/A         | None     | ['F1', 'F2']      |
+| I03 | Betty /Jole/       | F      | 16 MAR 2963 | -946  | TRUE  | N/A         | F1       | ['F3']            |
+| I04 | Frank /Gonzalez/   | M      | 2 SEP 1961  | 55    | TRUE  | N/A         | None     | ['F3']            |
+| I05 | Bob /George/       | M      | 14 JUN 0945 | 1075  | FALSE | 25 DEC 2020 | None     | ['F2']            |
+| I06 | Anne /Jole/        | F      | 19 DEC 0968 | 1048  | FALSE | 13 JUL 2017 | F1       | N/A               |
+| I07 | Daisey /Gonzalez/  | F      | 10 JUL 2017 | 0     | TRUE  | N/A         | F3       | N/A               |
+| I08 | Dave /Gonzalez/    | M      | 29 JUN 2017 | 0     | TRUE  | N/A         | F3       | N/A               |
+| I09 | John /Gonzalez/    | M      | 14 JUL 2017 | 0     | TRUE  | N/A         | F3       | N/A               |
+| I10 | Julia /Roberts/    | F      | 4 SEP 1987  | 29    | FALSE | 23 JUN 2017 | F2       | N/A               |
+| I11 | Jesse /Roberts/    | M      | 14 FEB 1989 | 28    | TRUE  | N/A         | F2       | ['F4']            |
+| I12 | Olivia /Weaver/    | F      | 27 DEC 1991 | 25    | TRUE  | N/A         | None     | ['F4']            |
+| I13 | Frank /Gonzalez/   | M      | 2 SEP 1961  | 55    | TRUE  | N/A         | None     | ['F3']            |
+| I14 | Madison /Gonzalez/ | F      | 11 JUL 2017 | 0     | TRUE  | N/A         | F3       | N/A               |
+| I14 | Madison /Gonzalez/ | F      | 11 JUL 2017 | 0     | TRUE  | N/A         | F3       | N/A               |
+| I15 | Laura /Gonzalez/   | F      | 15 JUL 2017 | 0     | TRUE  | N/A         | F3       | N/A               |
+| I16 | Sarah /Gonzalez/   | F      | 16 AUG 2016 | 0     | TRUE  | N/A         | F3       | N/A               |
+| I17 | Pheobe /Gonzalez/  | F      | 17 AUG 2016 | 0     | TRUE  | N/A         | F3       | N/A               |
+| I18 | Racheal /Gonzalez/ | F      | 18 AUG 2016 | 0     | TRUE  | N/A         | F3       | N/A               |
+| I19 | Janice /Gonzalez/  | F      | 19 JUL 2017 | 0     | TRUE  | N/A         | F3       | N/A               |
+| I19 | Janice /Gonzalez/  | F      | 19 JUL 2017 | 0     | TRUE  | N/A         | F3       | N/A               |
+| I20 | Andrea /Gonzalez/  | F      | 20 JUL 2017 | 0     | TRUE  | N/A         | F3       | N/A               |
+| I21 | Amy /Gonzalez/     | F      | 21 JUL 2017 | 0     | TRUE  | N/A         | F3       | N/A               |
+| I22 | Emma /Gonzalez/    | F      | 22 JUL 2017 | 0     | TRUE  | N/A         | F3       | N/A               |
+| I23 | Emily /Gonzalez/   | F      | 23 JUL 2017 | 0     | TRUE  | N/A         | F3       | N/A               |
+| I24 | Martha /Gonzalez/  | F      | 24 JUL 2017 | 0     | TRUE  | N/A         | F3       | N/A               |
+| I25 | Ross /Gonzalez/    | F      | 25 JUL 2017 | 0     | TRUE  | N/A         | F3       | ['F2']            |
+| I26 | Anika /Gonzalez/   | F      | 26 JUL 2017 | 0     | TRUE  | N/A         | F3       | ['F2']            |
+| I27 | Ashley /Gonzalez/  | F      | 27 JUL 2017 | 0     | TRUE  | N/A         | F3       | N/A               |
++-----+--------------------+--------+-------------+-------+-------+-------------+----------+-------------------+
+
+
+FAMILY DATABASE: 
+
++-----+-------------+-------------+------------+-------------------+---------+-------------------+------------------------+
+| ID  | Married     | Divorced    | Husband ID | Husband Name      | Wife ID | Wife Name         | Children               |
++-----+-------------+-------------+------------+-------------------+---------+-------------------+------------------------+
+| F01 | 9 NOV 1957  | 9 NOV 1947  | I01        | David /Jole/      | I02     | Jillian /Kelly/   | ['I03', 'I06']         |
+| F02 | 20 JUN 1986 | 20 MAR 2020 | I05        | Bob /George/      | I02     | Jillian /Kelly/   | ['I10', 'I11']         |
+| F03 | 3 MAR 1991  | N/A         | I04        | Frank /Gonzalez/  | I03     | Betty /Jole/      | ['I07', 'I08', 'I09', 'I14', 'I14', 'I15', 'I16', 'I17', 'I18', 'I19', 'I20', 'I21', 'I22', 'I23', 'I24', 'I25', 'I26', 'I27'] |
+| F04 | 27 AUG 2009 | N/A         | I11        | Jesse /Roberts/   | I12     | Olivia /Weaver/   | N/A                    |
+| F05 | 29 JUL 2017 | 20 MAR 2020 | I25        | Ross /Gonzalez/   | I26     | Anika /Gonzalez/  | N/A                    |
++-----+-------------+-------------+------------+-------------------+---------+-------------------+------------------------+
+
+
+ANOMALY: FAMILY: US08: F01: Child I03 born 16 MAR 2963 after divorce on 9 NOV 1947
+ANOMALY: FAMILY: US08: F01: Child I06 born 19 DEC 0968 before marriage on 9 NOV 1957
+ANOMALY: FAMILY: US09: F01: Child I03 born 16 MAR 2963 after father's death (after 9 months) on 13 SEP 0878
+ANOMALY: FAMILY: US09: F01: Child I06 born 19 DEC 0968 after father's death (after 9 months) on 13 SEP 0878
+ERROR: INDIVIDUAL: US01: I03: The date of birth, 16 MAR 2963, occurs in the future
+ERROR: INDIVIDUAL: US01: I05: The date of death, 25 DEC 2020, occurs in the future
+ERROR: FAMILY: US01: F02 The date of divorce, 20 MAR 2020, occurs in the future
+ERROR: FAMILY: US01: F05 The date of divorce, 20 MAR 2020, occurs in the future
+ERROR: INDIVIDUAL: US07: I05: Individual is older than 150 years old
+ERROR: INDIVIDUAL: US07: I06: Individual is older than 150 years old
+ERROR: FAMILY: US23: F02: The Child I11 ( Jesse /Roberts/ ) is not having the family name "George"
+ERROR: INDIVIDUAL: US16: I13: The Individual I13 is sharing the Same Name "Frank /Gonzalez/" and Date of Birth "2 SEP 1961" with another individual
+ERROR: FAMILY: US06: F01: Husband David /Jole/ (I01) Died before Divorce on 9 NOV 1947
+ANOMALY: FAMILY: US12: F01: Mother Jillian /Kelly/ (I02) is more than 60 years older than the child I03
+ANOMALY: FAMILY: US12: F01: Father David /Jole/ (I01) is more than 80 years older than the child I03
+ANOMALY: FAMILY: US12: F02: Father Bob /George/ (I05) is more than 80 years older than the child I10
+ANOMALY: FAMILY: US12: F02: Father Bob /George/ (I05) is more than 80 years older than the child I11
+ERROR: INDIVIDUAL: US02: I03: The date of birth, 16 MAR 2963 occurs before marriage, 3 MAR 1991
+ERROR: INDIVIDUAL: US03: I01: The date of birth, 7 FEB 0941, occurs after death 13 SEP 0878
+ERROR: INDIVIDUAL: US42: I02: Birth Date 53 APR 1939 is invalid.
+RESULT: INDIVIDUAL: US29: List of Individuals Deceased: => ID: I10  Name: Julia /Roberts/
+                                                        => ID: I01  Name: David /Jole/
+                                                        => ID: I06  Name: Anne /Jole/
+                                                        => ID: I05  Name: Bob /George/
+RESULT: INDIVIDUAL: US35: List of Recently Born Individuals: => ID: I20  Name: Andrea /Gonzalez/
+                                                             => ID: I21  Name: Amy /Gonzalez/
+                                                             => ID: I22  Name: Emma /Gonzalez/
+                                                             => ID: I23  Name: Emily /Gonzalez/
+                                                             => ID: I24  Name: Martha /Gonzalez/
+                                                             => ID: I25  Name: Ross /Gonzalez/
+                                                             => ID: I26  Name: Anika /Gonzalez/
+                                                             => ID: I27  Name: Ashley /Gonzalez/
+                                                             => ID: I19  Name: Janice /Gonzalez/
+                                                             => ID: I15  Name: Laura /Gonzalez/
+                                                             => ID: I14  Name: Madison /Gonzalez/
+                                                             => ID: I03  Name: Betty /Jole/
+                                                             => ID: I07  Name: Daisey /Gonzalez/
+                                                             => ID: I09  Name: John /Gonzalez/
+RESULT: INDIVIDUAL: US36: List of Recently Dead Individuals: => ID: I06  Name: Anne /Jole/
+                                                             => ID: I05  Name: Bob /George/
+ERROR: FAMILY: US04: F01: The date of marriage, 9 NOV 1957 occurs after the date of divorce, 9 NOV 1947
+ERROR: INDIVIDUAL: US05: I05: The date of marriage, 20 JUN 1986 occurs after death, 25 DEC 2020
+ERROR: INDIVIDUAL: US22: I14: Have a Duplicate ID
+ERROR: INDIVIDUAL: US22: I19: Have a Duplicate ID
+ERROR: FAMILY: US15: F03: All Child in the Family F03 is having more than 15 siblings.
+RESULT: INDIVIDUAL: US38: List of Individuals with upcoming Birthdays: => ID: I18  Name: Racheal /Gonzalez/
+                                                                       => ID: I17  Name: Pheobe /Gonzalez/
+                                                                       => ID: I16  Name: Sarah /Gonzalez/
+RESULT: INDIVIDUAL: US39: List of Individuals with upcoming Anniversary: => ID: F04  Husband Name: Jesse /Roberts/  Wife Name: Olivia /Weaver/
+ERROR: INDIVIDUAL: US10: I03: The date of marriage, 3 MAR 1991 does not occur at least 14 years after birth date 16 MAR 2963
+ERROR: INDIVIDUAL: US10: I26: The date of marriage, 29 JUL 2017 does not occur at least 14 years after birth date 26 JUL 2017
+ANOMALY: FAMILY: US21: F05: The gender of Husband, in family F05, is incorrect for their role
+Error: Family: US18: Family F05 has a husband and wife who are siblings.
+RESULT: INDIVIDUAL: US27: List of Individuals with their Ages: Name: David /Jole/        Age: -63
+                                                               Name: Jillian /Kelly/     Age: 78
+                                                               Name: Betty /Jole/        Age: -946
+                                                               Name: Frank /Gonzalez/    Age: 55
+                                                               Name: Bob /George/        Age: 1075
+                                                               Name: Anne /Jole/         Age: 1048
+                                                               Name: Daisey /Gonzalez/   Age: 0
+                                                               Name: Dave /Gonzalez/     Age: 0
+                                                               Name: John /Gonzalez/     Age: 0
+                                                               Name: Julia /Roberts/     Age: 29
+                                                               Name: Jesse /Roberts/     Age: 28
+                                                               Name: Olivia /Weaver/     Age: 25
+                                                               Name: Frank /Gonzalez/    Age: 55
+                                                               Name: Madison /Gonzalez/  Age: 0
+                                                               Name: Madison /Gonzalez/  Age: 0
+                                                               Name: Laura /Gonzalez/    Age: 0
+                                                               Name: Sarah /Gonzalez/    Age: 0
+                                                               Name: Pheobe /Gonzalez/   Age: 0
+                                                               Name: Racheal /Gonzalez/  Age: 0
+                                                               Name: Janice /Gonzalez/   Age: 0
+                                                               Name: Janice /Gonzalez/   Age: 0
+                                                               Name: Andrea /Gonzalez/   Age: 0
+                                                               Name: Amy /Gonzalez/      Age: 0
+                                                               Name: Emma /Gonzalez/     Age: 0
+                                                               Name: Emily /Gonzalez/    Age: 0
+                                                               Name: Martha /Gonzalez/   Age: 0
+                                                               Name: Ross /Gonzalez/     Age: 0
+                                                               Name: Anika /Gonzalez/    Age: 0
+                                                               Name: Ashley /Gonzalez/   Age: 0

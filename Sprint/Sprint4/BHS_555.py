@@ -8,8 +8,6 @@ Team Members:
 	Sawyer Coleman
 	Houston Migdon
     
-UPDATE LOG:
-6/20 - Sawyer
 '''
 
 import datetime
